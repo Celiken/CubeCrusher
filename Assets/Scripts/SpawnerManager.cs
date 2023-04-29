@@ -42,13 +42,12 @@ public class SpawnerManager : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        Debug.Log(lastSpawnPosition);
         if (nextSpawnPosRandomPicking >= spawnPositionSwapRate)
         {
             nextSpawnPosRandomPicking = 0;
             lastSpawnPosition = PickNewSpawnDirection();
         }
-        GameObject enemyGO = Instantiate(enemyPrefab, player.transform.position + (lastSpawnPosition * spawnDistance), Quaternion.identity, centerPoint);
+        Instantiate(enemyPrefab, player.transform.position + (lastSpawnPosition * spawnDistance), Quaternion.identity, centerPoint);
         lastSpawnPosition = Quaternion.AngleAxis((Random.value < 0.5f ? -1 : 1) * absoluteSpawnAngle, Vector3.up) * lastSpawnPosition;
     }
 

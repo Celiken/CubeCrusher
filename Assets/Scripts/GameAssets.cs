@@ -15,4 +15,7 @@ public class GameAssets : MonoBehaviour
     public Material blueMat;
     public Material redMat;
     public Material greenMat;
+
+    [Header("XP")]
+    public GameObject xpPrefab;
 }

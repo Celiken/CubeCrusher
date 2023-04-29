@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1519477676946945559}
   - component: {fileID: 1519477676946945552}
   - component: {fileID: 1519477676946945553}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 763c2985b7fd1444b81d46a2e7516363, type: 2}
+  - {fileID: 2100000, guid: b7eac9a437dcf07488be7f90b39bcc14, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,7 +106,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1519477677475320312}
   - component: {fileID: 1519477677475320318}
-  m_Layer: 0
+  - component: {fileID: 8895618504090431608}
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +122,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1519477677475320315}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -141,7 +142,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95152671521deaf458782563a2809c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  minMoveSpeed: 2
+  maxMoveSpeed: 5
+  distanceSlow: 10
   visualGO: {fileID: 1519477676946945555}
-  targetableMat: {fileID: 2100000, guid: 763c2985b7fd1444b81d46a2e7516363, type: 2}
-  untargetableMat: {fileID: 2100000, guid: 46eb0ddf42887d44e9322057ca26d729, type: 2}
+  xpSpread: 1
+  xpMinAmount: 5
+  xpMaxAmount: 10
+  layerMoveEnemy:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!135 &8895618504090431608
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519477677475320315}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7
+  m_Center: {x: 0, y: 0, z: 0}

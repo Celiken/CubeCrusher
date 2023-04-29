@@ -1,8 +1,11 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     public static Player Instance;
+
+    private XPManager xpManager;
 
     [SerializeField] private GameObject visual;
     [SerializeField] private GameInput gameInput;
@@ -10,16 +13,20 @@ public class Player : MonoBehaviour
 
     private Vector3 lastMoveDir;
 
+    private SphereCollider playerCollider;
+
     private ColorType.Color actualColor;
 
     private void Awake()
     {
         Instance = this;
+        playerCollider = GetComponent<SphereCollider>();
         lastMoveDir = Vector3.zero;
     }
 
     private void Start()
     {
+        xpManager = XPManager.Instance;
         actualColor = ColorType.GetRandomColor();
         SwapRenderMat();
         gameInput.OnSwitch += GameInput_OnSwitch;
@@ -47,33 +54,28 @@ public class Player : MonoBehaviour
         Vector3 moveDir = new Vector3(input.x, 0f, input.y);
 
         float moveDistance = moveSpeed * Time.deltaTime;
-        float playerRadius = 1f;
-        float playerHeight = 1f;
-
-        bool canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDir, moveDistance);
-        if (!canMove)
-        {
-            Vector3 moveDirX = new Vector3(moveDir.x, 0, 0).normalized;
-            canMove = (moveDir.x < -.5f || moveDir.x > .5f) && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirX, moveDistance);
-            if (canMove)
-                moveDir = moveDirX;
-            else
-            {
-                Vector3 moveDirZ = new Vector3(0, 0, moveDir.z).normalized;
-                canMove = (moveDir.z < -.5f || moveDir.z > .5f) && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirZ, moveDistance);
-                if (canMove)
-                    moveDir = moveDirZ;
-            }
-        }
-        if (canMove)
-        {
-            transform.position += moveDir * moveDistance;
-            lastMoveDir = moveDir;
-        }
+        transform.position += moveDir * moveDistance;
+        lastMoveDir = moveDir;
     }
 
     public Vector3 GetLastMoveDir()
     {
         return lastMoveDir;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.TryGetComponent(out Enemy enemy))
+        {
+            if (enemy.GetColor() == actualColor)
+            {
+                enemy.Kill();
+            }
+        }
+    }
+
+    public void AddXP(int amount)
+    {
+        xpManager.AddXP(amount);
     }
 }
