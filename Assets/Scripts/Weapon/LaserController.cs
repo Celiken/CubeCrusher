@@ -22,10 +22,14 @@ public class LaserController : WeaponBase
         Enemy closestEnemy = EnemyTargeter.Instance.GetClosestEnemy(color);
         if (closestEnemy != null)
         {
-            base.Attack();
-            GameObject projectile = Instantiate(prefab);
-            projectile.transform.position = transform.position;
-            projectile.GetComponent<ProjectileWeaponBehaviour>().Init((closestEnemy.transform.position - player.transform.position).normalized, speed, color);
+            float dist = (closestEnemy.transform.position - player.transform.position).magnitude;
+            if (dist <= prefab.GetComponent<ProjectileWeaponBehaviour>().GetDistance())
+            {
+                base.Attack();
+                GameObject projectile = Instantiate(prefab);
+                projectile.transform.position = transform.position;
+                projectile.GetComponent<ProjectileWeaponBehaviour>().Init((closestEnemy.transform.position - player.transform.position).normalized, speed, color);
+            }
         }
     }
 }

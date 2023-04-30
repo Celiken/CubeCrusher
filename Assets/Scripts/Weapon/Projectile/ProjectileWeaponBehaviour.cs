@@ -18,4 +18,9 @@ public class ProjectileWeaponBehaviour : MonoBehaviour
         this.direction = direction;
         Destroy(gameObject, distance / baseSpeed);
     }
+
+    public float GetDistance()
+    {
+        return distance;
+    }
 }
