@@ -47,7 +47,7 @@ public class SpawnerManager : MonoBehaviour
             nextSpawnPosRandomPicking = 0;
             lastSpawnPosition = PickNewSpawnDirection();
         }
-        Instantiate(enemyPrefab, player.transform.position + (lastSpawnPosition * spawnDistance), Quaternion.identity, centerPoint);
+        GameObject enemyGO = Instantiate(enemyPrefab, player.transform.position + (lastSpawnPosition * spawnDistance), Quaternion.identity, centerPoint);
         lastSpawnPosition = Quaternion.AngleAxis((Random.value < 0.5f ? -1 : 1) * absoluteSpawnAngle, Vector3.up) * lastSpawnPosition;
     }
 

@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private float minMoveSpeed;
-    [SerializeField] private float maxMoveSpeed;
-    [SerializeField] private float distanceSlow;
+    [SerializeField] private float moveSpeed;
 
     [SerializeField] private GameObject visualGO;
 
@@ -14,35 +14,55 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int xpMinAmount;
     [SerializeField] private int xpMaxAmount;
 
-    [SerializeField] LayerMask layerMoveEnemy;
+    [SerializeField] LayerMask layerEnemy;
 
-    private GameInput gameInput;
+    [SerializeField] private float approxDistance;
+    [SerializeField] private float timerApproxMax;
+    private Vector3 positionApprox = Vector3.zero;
+    private float timerApprox;
+
     private Player playerTarget;
+    private CharacterController characterController;
 
-    private float moveSpeed;
     private ColorType.Color color;
 
     private void Awake()
     {
-        moveSpeed = Random.Range(minMoveSpeed, maxMoveSpeed);
+        characterController = GetComponent<CharacterController>();
     }
 
     void Start()
     {
         playerTarget = Player.Instance;
-        gameInput = GameInput.Instance;
         color = ColorType.GetRandomColor();
+        EnemyTargeter.Instance.AddEnemy(this);
         ChangeRender();
+        timerApprox = 0f;
     }
 
     void Update()
     {
+        timerApprox -= Time.deltaTime;
+        if (timerApprox <= 0f)
+        {
+            RefreshTargetApprox();
+            timerApprox = timerApproxMax;
+        }
         Move();
     }
 
     private void Move()
     {
-        transform.position = Vector3.MoveTowards(transform.position, playerTarget.transform.position, moveSpeed * Time.deltaTime);
+        Vector3 moveDir = (playerTarget.transform.position - (transform.position + positionApprox)).normalized;
+
+        float moveDistance = moveSpeed * Time.deltaTime;
+
+        characterController.Move(moveDir * moveDistance);
+    }
+
+    private void RefreshTargetApprox()
+    {
+        positionApprox = new Vector3(Random.Range(-approxDistance, approxDistance), 0f, Random.Range(-approxDistance, approxDistance));
     }
 
     private void ChangeRender()
@@ -50,14 +70,15 @@ public class Enemy : MonoBehaviour
         visualGO.GetComponent<Renderer>().material = ColorType.GetMaterialForColor(color);
     }
 
-    public ColorType.Color GetColor()
+    public ColorType.Color GetActualColor()
     {
         return color;
     }
 
-    public void Kill()
+    public void DestroySelf()
     {
         SpawnXP();
+        EnemyTargeter.Instance.RemoveEnemy(this);
         Destroy(gameObject);
     }
 
@@ -66,7 +87,7 @@ public class Enemy : MonoBehaviour
         int xpAmount = Random.Range(xpMinAmount, xpMaxAmount + 1);
         for (int i = 0; i < xpAmount; i++)
         {
-            Instantiate(GameAssets.Instance.xpPrefab, transform.position + new Vector3(Random.Range(-xpSpread, xpSpread), 0f, Random.Range(-xpSpread, xpSpread)), Quaternion.identity);
+            Instantiate(GameAssets.Instance.xpPrefab, transform.position + new Vector3(Random.Range(-xpSpread, xpSpread), -.5f, Random.Range(-xpSpread, xpSpread)), Quaternion.identity);
         }
     }
 }

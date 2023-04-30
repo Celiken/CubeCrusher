@@ -6,21 +6,21 @@ public class Player : MonoBehaviour
     public static Player Instance;
 
     private XPManager xpManager;
+    private CharacterController characterController;
 
     [SerializeField] private GameObject visual;
     [SerializeField] private GameInput gameInput;
     [SerializeField] private float moveSpeed;
+    [SerializeField] private LayerMask layerPlayer;
 
     private Vector3 lastMoveDir;
-
-    private SphereCollider playerCollider;
 
     private ColorType.Color actualColor;
 
     private void Awake()
     {
+        characterController = GetComponent<CharacterController>();
         Instance = this;
-        playerCollider = GetComponent<SphereCollider>();
         lastMoveDir = Vector3.zero;
     }
 
@@ -52,9 +52,8 @@ public class Player : MonoBehaviour
     {
         Vector2 input = gameInput.GetMovementNormalized();
         Vector3 moveDir = new Vector3(input.x, 0f, input.y);
-
         float moveDistance = moveSpeed * Time.deltaTime;
-        transform.position += moveDir * moveDistance;
+        characterController.Move(moveDir * moveDistance);
         lastMoveDir = moveDir;
     }
 
@@ -63,15 +62,9 @@ public class Player : MonoBehaviour
         return lastMoveDir;
     }
 
-    private void OnTriggerStay(Collider other)
+    public ColorType.Color GetActualColor()
     {
-        if (other.TryGetComponent(out Enemy enemy))
-        {
-            if (enemy.GetColor() == actualColor)
-            {
-                enemy.Kill();
-            }
-        }
+        return actualColor;
     }
 
     public void AddXP(int amount)
