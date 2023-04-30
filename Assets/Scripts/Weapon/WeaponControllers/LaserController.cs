@@ -2,19 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserController : WeaponBase
+public class LaserController : WeaponController
 {
+    [SerializeField] private float distance;
     [SerializeField] private Player player;
-
-    protected override void Start()
-    {
-        base.Start();
-    }
-
-    protected override void Update()
-    {
-        base.Update();        
-    }
 
     protected override void Attack()
     {
@@ -23,12 +14,12 @@ public class LaserController : WeaponBase
         if (closestEnemy != null)
         {
             float dist = (closestEnemy.transform.position - player.transform.position).magnitude;
-            if (dist <= prefab.GetComponent<ProjectileWeaponBehaviour>().GetDistance())
+            if (dist <= distance)
             {
                 base.Attack();
                 GameObject projectile = Instantiate(prefab);
                 projectile.transform.position = transform.position;
-                projectile.GetComponent<ProjectileWeaponBehaviour>().Init((closestEnemy.transform.position - player.transform.position).normalized, speed, color);
+                projectile.GetComponent<ProjectileWeaponBehaviour>().Init(this, (closestEnemy.transform.position - player.transform.position).normalized, distance / speed, color);
             }
         }
     }

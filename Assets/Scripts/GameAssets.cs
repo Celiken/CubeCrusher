@@ -15,13 +15,20 @@ public class GameAssets : MonoBehaviour
     public Material blueMat;
     public Material redMat;
     public Material greenMat;
+    public Material yellowMat;
 
     [Header("XP")]
     public GameObject xpPrefab;
 
-    [Header("Proj mat")]
-    public Material whiteProj;
-    public Material blueProj;
-    public Material redProj;
-    public Material greenProj;
+    [Header("Laser mat")]
+    public Material blueLaser;
+    public Material redLaser;
+    public Material greenLaser;
+    public Material yellowLaser;
+
+    [Header("ForceField mat")]
+    public Material blueField;
+    public Material redField;
+    public Material greenField;
+    public Material yellowField;
 }

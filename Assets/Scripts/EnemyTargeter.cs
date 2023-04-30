@@ -9,6 +9,7 @@ public class EnemyTargeter : MonoBehaviour
     private KdTree<Enemy> redEnemyList = new KdTree<Enemy>();
     private KdTree<Enemy> blueEnemyList = new KdTree<Enemy>();
     private KdTree<Enemy> greenEnemyList = new KdTree<Enemy>();
+    private KdTree<Enemy> yellowEnemyList = new KdTree<Enemy>();
     private Player player;
 
     private void Awake()
@@ -28,6 +29,7 @@ public class EnemyTargeter : MonoBehaviour
         redEnemyList.UpdatePositions();
         blueEnemyList.UpdatePositions();
         greenEnemyList.UpdatePositions();
+        yellowEnemyList.UpdatePositions();
     }
 
     public void AddEnemy(Enemy enemy)
@@ -42,6 +44,9 @@ public class EnemyTargeter : MonoBehaviour
                 break;
             case ColorType.Color.Green:
                 greenEnemyList.Add(enemy);
+                break;
+            case ColorType.Color.Yellow:
+                yellowEnemyList.Add(enemy);
                 break;
         }
     }
@@ -59,6 +64,9 @@ public class EnemyTargeter : MonoBehaviour
             case ColorType.Color.Green:
                 greenEnemyList.RemoveAll(x => x == enemy);
                 break;
+            case ColorType.Color.Yellow:
+                yellowEnemyList.RemoveAll(x => x == enemy);
+                break;
         }
     }
 
@@ -72,6 +80,8 @@ public class EnemyTargeter : MonoBehaviour
                 return redEnemyList.FindClosest(player.transform.position);
             case ColorType.Color.Green:
                 return greenEnemyList.FindClosest(player.transform.position);
+            case ColorType.Color.Yellow:
+                return yellowEnemyList.FindClosest(player.transform.position);
         }
         return null;
     }

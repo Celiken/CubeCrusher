@@ -11,13 +11,17 @@ public class XP : MonoBehaviour
     private int amount;
     private XPManager manager;
 
-    [SerializeField] private float speed;
+    [SerializeField] private float minSpeed;
+    [SerializeField] private float maxSpeed;
+
+    private float speed;
 
     private Tweener tweener;
 
     private void Awake()
     {
         player = Player.Instance;
+        speed = Random.Range(minSpeed, maxSpeed);
     }
 
     void Start()
@@ -32,8 +36,13 @@ public class XP : MonoBehaviour
         if ((transform.position - player.transform.position).magnitude <= 0.1f)
         {
             player.AddXP(amount);
-            Destroy(gameObject);
+            DestroySelf();
         }
+    }
+
+    public void DestroySelf()
+    {
+        XPManager.Instance.QueueXPOrb(gameObject);
     }
 
     public int GetAmount()

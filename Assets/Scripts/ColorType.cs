@@ -9,7 +9,8 @@ public static class ColorType
         Blue = 0,
         Red = 1,
         Green = 2,
-        NUMBER_OF_VALUE = 3
+        Yellow = 3,
+        NUMBER_OF_VALUE = 4
     }
 
     public static Color GetRandomColor()
@@ -22,13 +23,15 @@ public static class ColorType
     {
         switch (color)
         {
+            default:
             case Color.Blue:
                 return Color.Red;
             case Color.Red:
                 return Color.Green;
-            default:
             case Color.Green:
                 return Color.Blue;
+            case Color.Yellow:
+                return Color.Yellow;
         }
     }
 
@@ -43,6 +46,8 @@ public static class ColorType
                 return GameAssets.Instance.redMat;
             case Color.Green:
                 return GameAssets.Instance.greenMat;
+            case Color.Yellow:
+                return GameAssets.Instance.yellowMat;
         }
     }
 }

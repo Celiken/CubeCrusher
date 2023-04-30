@@ -29,12 +29,12 @@ public class Player : MonoBehaviour
         xpManager = XPManager.Instance;
         actualColor = ColorType.GetRandomColor();
         SwapRenderMat();
-        gameInput.OnSwitch += GameInput_OnSwitch;
+        gameInput.OnSwap += GameInput_OnSwap;
     }
 
-    private void GameInput_OnSwitch(object sender, System.EventArgs e)
+    private void GameInput_OnSwap(object sender, GameInput.SwapEventArgs e)
     {
-        actualColor = ColorType.GetNextColor(actualColor);
+        actualColor = e.color;
         SwapRenderMat();
     }
 

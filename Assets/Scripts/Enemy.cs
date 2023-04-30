@@ -10,7 +10,6 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private GameObject visualGO;
 
-    [SerializeField] private float xpSpread;
     [SerializeField] private int xpMinAmount;
     [SerializeField] private int xpMaxAmount;
 
@@ -18,16 +17,19 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private float approxDistance;
     [SerializeField] private float timerApproxMax;
+
     private Vector3 positionApprox = Vector3.zero;
     private float timerApprox;
 
     private Player playerTarget;
     private CharacterController characterController;
+    private HealthComponent healthComponent;
 
     private ColorType.Color color;
 
     private void Awake()
     {
+        healthComponent = GetComponent<HealthComponent>();
         characterController = GetComponent<CharacterController>();
     }
 
@@ -75,19 +77,16 @@ public class Enemy : MonoBehaviour
         return color;
     }
 
-    public void DestroySelf()
+    public void Hit(float damage)
     {
-        SpawnXP();
-        EnemyTargeter.Instance.RemoveEnemy(this);
-        Destroy(gameObject);
+        if (healthComponent.TakeDamage(damage) <= 0f)
+            DestroySelf();
     }
 
-    public void SpawnXP()
+    public void DestroySelf()
     {
-        int xpAmount = Random.Range(xpMinAmount, xpMaxAmount + 1);
-        for (int i = 0; i < xpAmount; i++)
-        {
-            Instantiate(GameAssets.Instance.xpPrefab, transform.position + new Vector3(Random.Range(-xpSpread, xpSpread), -.5f, Random.Range(-xpSpread, xpSpread)), Quaternion.identity);
-        }
+        XPManager.Instance.SpawnXP(transform, Random.Range(xpMinAmount, xpMaxAmount + 1));
+        EnemyTargeter.Instance.RemoveEnemy(this);
+        Destroy(gameObject);
     }
 }

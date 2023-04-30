@@ -37,9 +37,36 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Switch"",
+                    ""name"": ""SwapRed"",
                     ""type"": ""Button"",
-                    ""id"": ""a0623241-947e-43b6-87b7-36f39b2977ff"",
+                    ""id"": ""76d67993-a7bc-473b-9d17-132745a4dc4d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwapBlue"",
+                    ""type"": ""Button"",
+                    ""id"": ""12e68abd-0f9c-4eea-b5b0-0d5773a0de7e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwapGreen"",
+                    ""type"": ""Button"",
+                    ""id"": ""0f3f2766-ca24-45a9-920e-1ed6e94a4136"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwapYellow"",
+                    ""type"": ""Button"",
+                    ""id"": ""c90be0dc-39d5-4e9b-bdfb-7ec426f1b637"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -115,23 +142,89 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4dce80c5-62a9-4f54-a4cb-285a469ff967"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""id"": ""651fce0b-84ce-4d12-ac3e-15ec96efab72"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Switch"",
+                    ""action"": ""SwapRed"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c40d11a2-730f-4fa8-87c7-9f69df8d9840"",
+                    ""id"": ""0151a66e-d9e1-42c1-b402-54f8757cf902"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwapRed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""752f17d8-ff80-4717-a6d9-555ba1578d4f"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwapBlue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ab5ef6ae-5cae-4844-90c1-893b6f7567be"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwapBlue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e1cee376-a4c5-4f5a-9e0d-d7c2b53a479a"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Switch"",
+                    ""action"": ""SwapGreen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7994974c-6b0c-4a37-944f-02dd26382409"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwapGreen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9805c073-bc15-4be0-b954-00a8dcf42984"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwapYellow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ca2d657a-169c-4ce9-a443-d0e43d5f242e"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwapYellow"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -143,7 +236,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_Switch = m_Player.FindAction("Switch", throwIfNotFound: true);
+        m_Player_SwapRed = m_Player.FindAction("SwapRed", throwIfNotFound: true);
+        m_Player_SwapBlue = m_Player.FindAction("SwapBlue", throwIfNotFound: true);
+        m_Player_SwapGreen = m_Player.FindAction("SwapGreen", throwIfNotFound: true);
+        m_Player_SwapYellow = m_Player.FindAction("SwapYellow", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -206,13 +302,19 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_Switch;
+    private readonly InputAction m_Player_SwapRed;
+    private readonly InputAction m_Player_SwapBlue;
+    private readonly InputAction m_Player_SwapGreen;
+    private readonly InputAction m_Player_SwapYellow;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
         public PlayerActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
-        public InputAction @Switch => m_Wrapper.m_Player_Switch;
+        public InputAction @SwapRed => m_Wrapper.m_Player_SwapRed;
+        public InputAction @SwapBlue => m_Wrapper.m_Player_SwapBlue;
+        public InputAction @SwapGreen => m_Wrapper.m_Player_SwapGreen;
+        public InputAction @SwapYellow => m_Wrapper.m_Player_SwapYellow;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -225,9 +327,18 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
-            @Switch.started += instance.OnSwitch;
-            @Switch.performed += instance.OnSwitch;
-            @Switch.canceled += instance.OnSwitch;
+            @SwapRed.started += instance.OnSwapRed;
+            @SwapRed.performed += instance.OnSwapRed;
+            @SwapRed.canceled += instance.OnSwapRed;
+            @SwapBlue.started += instance.OnSwapBlue;
+            @SwapBlue.performed += instance.OnSwapBlue;
+            @SwapBlue.canceled += instance.OnSwapBlue;
+            @SwapGreen.started += instance.OnSwapGreen;
+            @SwapGreen.performed += instance.OnSwapGreen;
+            @SwapGreen.canceled += instance.OnSwapGreen;
+            @SwapYellow.started += instance.OnSwapYellow;
+            @SwapYellow.performed += instance.OnSwapYellow;
+            @SwapYellow.canceled += instance.OnSwapYellow;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -235,9 +346,18 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
-            @Switch.started -= instance.OnSwitch;
-            @Switch.performed -= instance.OnSwitch;
-            @Switch.canceled -= instance.OnSwitch;
+            @SwapRed.started -= instance.OnSwapRed;
+            @SwapRed.performed -= instance.OnSwapRed;
+            @SwapRed.canceled -= instance.OnSwapRed;
+            @SwapBlue.started -= instance.OnSwapBlue;
+            @SwapBlue.performed -= instance.OnSwapBlue;
+            @SwapBlue.canceled -= instance.OnSwapBlue;
+            @SwapGreen.started -= instance.OnSwapGreen;
+            @SwapGreen.performed -= instance.OnSwapGreen;
+            @SwapGreen.canceled -= instance.OnSwapGreen;
+            @SwapYellow.started -= instance.OnSwapYellow;
+            @SwapYellow.performed -= instance.OnSwapYellow;
+            @SwapYellow.canceled -= instance.OnSwapYellow;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -258,6 +378,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnSwitch(InputAction.CallbackContext context);
+        void OnSwapRed(InputAction.CallbackContext context);
+        void OnSwapBlue(InputAction.CallbackContext context);
+        void OnSwapGreen(InputAction.CallbackContext context);
+        void OnSwapYellow(InputAction.CallbackContext context);
     }
 }

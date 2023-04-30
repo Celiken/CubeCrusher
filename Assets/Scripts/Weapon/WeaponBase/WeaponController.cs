@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponBase : MonoBehaviour
+public class WeaponController : MonoBehaviour
 {
     [Header("Weapon Stats")]
     [SerializeField] protected GameObject prefab;
@@ -13,13 +13,11 @@ public class WeaponBase : MonoBehaviour
 
     private float timeBeforeNextAttack;
 
-    // Start is called before the first frame update
     protected virtual void Start()
     {
         timeBeforeNextAttack = 0f;
     }
 
-    // Update is called once per frame
     protected virtual void Update()
     {
         timeBeforeNextAttack -= Time.deltaTime;
