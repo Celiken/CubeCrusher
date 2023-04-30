@@ -11,11 +11,12 @@ public class XPManager : MonoBehaviour
     public static XPManager Instance;
 
     [Header("Settings Level")]
-    [SerializeField] private int xpPerLevel;
+    [SerializeField] private float baseXp;
     [SerializeField] private float xpMultiplier;
 
     [Header("UI Level")]
     [SerializeField] private TextMeshProUGUI levelText;
+    [SerializeField] private TextMeshProUGUI xpText;
     [SerializeField] private Image xpBar;
 
     private int level;
@@ -33,6 +34,7 @@ public class XPManager : MonoBehaviour
     private void Update()
     {
         xpBar.fillAmount = (float)currentXp / xpRequired;
+        xpText.text = $"{currentXp} / {xpRequired}";
         levelText.text = $"Lvl {level}";
     }
 
@@ -52,6 +54,6 @@ public class XPManager : MonoBehaviour
 
     private void UpdateXPRequired()
     {
-        xpRequired = Mathf.RoundToInt(level * xpPerLevel * xpMultiplier);
+        xpRequired = Mathf.RoundToInt(Mathf.Pow(level / baseXp, xpMultiplier));
     }
 }
