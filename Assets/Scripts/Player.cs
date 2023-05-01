@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
 
     private Vector3 lastMoveDir;
 
-    private ColorType.Color actualColor;
+    private Stance.Type actualColor;
 
     private void Awake()
     {
@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         xpManager = XPManager.Instance;
-        actualColor = ColorType.GetRandomColor();
+        actualColor = Stance.GetRandomColor();
         SwapRenderMat();
         gameInput.OnSwap += GameInput_OnSwap;
     }
@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
 
     private void SwapRenderMat()
     {
-        visual.GetComponent<Renderer>().material = ColorType.GetMaterialForColor(actualColor);
+        visual.GetComponent<Renderer>().material = Stance.GetMaterialForColor(actualColor);
     }
 
     void Update()
@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
         return lastMoveDir;
     }
 
-    public ColorType.Color GetActualColor()
+    public Stance.Type GetActualColor()
     {
         return actualColor;
     }

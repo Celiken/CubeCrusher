@@ -20,7 +20,7 @@ public class LaserBehaviour : ProjectileWeaponBehaviour
         trail = null;
     }
 
-    public override void Init<T>(T ctrl, Vector3 dir, float baseSpeed, ColorType.Color color)
+    public override void Init<T>(T ctrl, Vector3 dir, float baseSpeed, Stance.Type color)
     {
         controller = ctrl as LaserController;
         base.Init(ctrl, dir, baseSpeed, color);
@@ -35,17 +35,17 @@ public class LaserBehaviour : ProjectileWeaponBehaviour
         }
     }
 
-    private Material GetColorMat(ColorType.Color color)
+    private Material GetColorMat(Stance.Type color)
     {
         switch (color)
         {
-            case ColorType.Color.Blue:
+            case Stance.Type.Blue:
                 return GameAssets.Instance.blueLaser;
-            case ColorType.Color.Red:
+            case Stance.Type.Red:
                 return GameAssets.Instance.redLaser;
-            case ColorType.Color.Green:
+            case Stance.Type.Green:
                 return GameAssets.Instance.greenLaser;
-            case ColorType.Color.Yellow:
+            case Stance.Type.Yellow:
                 return GameAssets.Instance.yellowLaser;
         }
         return null;

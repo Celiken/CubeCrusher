@@ -35,17 +35,17 @@ public class EnemyTargeter : MonoBehaviour
     public void AddEnemy(Enemy enemy)
     {
         switch (enemy.GetActualColor())
-        {
-            case ColorType.Color.Blue:
+            {   
+            case Stance.Type.Blue:
                 blueEnemyList.Add(enemy);
                 break;
-            case ColorType.Color.Red:
+            case Stance.Type.Red:
                 redEnemyList.Add(enemy);
-                break;
-            case ColorType.Color.Green:
+                break;  
+            case Stance.Type.Green:
                 greenEnemyList.Add(enemy);
                 break;
-            case ColorType.Color.Yellow:
+            case Stance.Type.Yellow:
                 yellowEnemyList.Add(enemy);
                 break;
         }
@@ -55,32 +55,32 @@ public class EnemyTargeter : MonoBehaviour
     {
         switch (enemy.GetActualColor())
         {
-            case ColorType.Color.Blue:
+            case Stance.Type.Blue:
                 blueEnemyList.RemoveAll(x => x == enemy);
                 break;
-            case ColorType.Color.Red:
+            case Stance.Type.Red:
                 redEnemyList.RemoveAll(x => x == enemy);
                 break;
-            case ColorType.Color.Green:
+            case Stance.Type.Green:
                 greenEnemyList.RemoveAll(x => x == enemy);
                 break;
-            case ColorType.Color.Yellow:
+            case Stance.Type.Yellow:
                 yellowEnemyList.RemoveAll(x => x == enemy);
                 break;
         }
     }
 
-    public Enemy GetClosestEnemy(ColorType.Color color)
+    public Enemy GetClosestEnemy(Stance.Type color)
     {
         switch (color)
         {
-            case ColorType.Color.Blue:
+            case Stance.Type.Blue:
                 return blueEnemyList.FindClosest(player.transform.position);
-            case ColorType.Color.Red:
+            case Stance.Type.Red:
                 return redEnemyList.FindClosest(player.transform.position);
-            case ColorType.Color.Green:
+            case Stance.Type.Green:
                 return greenEnemyList.FindClosest(player.transform.position);
-            case ColorType.Color.Yellow:
+            case Stance.Type.Yellow:
                 return yellowEnemyList.FindClosest(player.transform.position);
         }
         return null;

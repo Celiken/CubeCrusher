@@ -31,4 +31,7 @@ public class GameAssets : MonoBehaviour
     public Material redField;
     public Material greenField;
     public Material yellowField;
+
+    [Header("Damage UI prefabs")]
+    public Transform pfDamagePopup;
 }

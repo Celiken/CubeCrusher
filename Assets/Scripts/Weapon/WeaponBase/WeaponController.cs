@@ -7,8 +7,8 @@ public class WeaponController : MonoBehaviour
     [Header("Weapon Stats")]
     [SerializeField] protected GameObject prefab;
     [SerializeField] protected float cooldown;
-    [SerializeField] public float damage;
     [SerializeField] public float speed;
+    [SerializeField] public int damage;
     [SerializeField] public int pierce;
 
     private float timeBeforeNextAttack;

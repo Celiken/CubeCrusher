@@ -1,0 +1,44 @@
+using DG.Tweening;
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class DamagePopup : MonoBehaviour
+{
+    public static DamagePopup Create(Vector3 position, int damageAmount, Stance.Type color)
+    {
+        Transform damagePopupTransform = Instantiate(GameAssets.Instance.pfDamagePopup, position, Quaternion.identity);
+        DamagePopup damagePopup = damagePopupTransform.GetComponent<DamagePopup>();
+        damagePopup.Setup(damageAmount, position, color);
+        return damagePopup;
+    }
+
+    private TextMeshPro textMesh;
+    [SerializeField] private float animDuration = .5f;
+
+    private void Awake()
+    {
+        textMesh = GetComponent<TextMeshPro>();
+    }
+
+    private void Update()
+    {
+
+    }
+
+    public void Setup(int damage, Vector3 position, Stance.Type color)
+    {
+        textMesh.text = damage.ToString();
+        textMesh.colorGradient = Stance.GetColorGradientForColor(color);
+        float moveXOffset = Random.Range(-1f, 1f);
+        float moveYOffset = Random.Range(0, 1f);
+        float moveZOffset = Random.Range(-1f, 1f);
+        textMesh.transform.DOMove(position + new Vector3(moveXOffset, moveYOffset, moveZOffset), animDuration);
+        textMesh.DOFade(0f, animDuration).OnComplete(() =>
+        {
+            Destroy(gameObject);
+        });
+    }
+}

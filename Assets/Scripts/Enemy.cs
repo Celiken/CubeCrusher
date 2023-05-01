@@ -6,6 +6,8 @@ using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private Transform damagePosition;
+    
     [SerializeField] private float moveSpeed;
 
     [SerializeField] private GameObject visualGO;
@@ -25,7 +27,7 @@ public class Enemy : MonoBehaviour
     private CharacterController characterController;
     private HealthComponent healthComponent;
 
-    private ColorType.Color color;
+    private Stance.Type color;
 
     private void Awake()
     {
@@ -36,7 +38,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         playerTarget = Player.Instance;
-        color = ColorType.GetRandomColor();
+        color = Stance.GetRandomColor();
         EnemyTargeter.Instance.AddEnemy(this);
         ChangeRender();
         timerApprox = 0f;
@@ -69,17 +71,18 @@ public class Enemy : MonoBehaviour
 
     private void ChangeRender()
     {
-        visualGO.GetComponent<Renderer>().material = ColorType.GetMaterialForColor(color);
+        visualGO.GetComponent<Renderer>().material = Stance.GetMaterialForColor(color);
     }
 
-    public ColorType.Color GetActualColor()
+    public Stance.Type GetActualColor()
     {
         return color;
     }
 
-    public void Hit(float damage)
+    public void Hit(int damage)
     {
-        if (healthComponent.TakeDamage(damage) <= 0f)
+        DamagePopup.Create(damagePosition.position, damage, color);
+        if (healthComponent.TakeDamage(damage) <= 0)
             DestroySelf();
     }
 

@@ -9,7 +9,7 @@ public class LaserController : WeaponController
 
     protected override void Attack()
     {
-        ColorType.Color color = player.GetActualColor();
+        Stance.Type color = player.GetActualColor();
         Enemy closestEnemy = EnemyTargeter.Instance.GetClosestEnemy(color);
         if (closestEnemy != null)
         {

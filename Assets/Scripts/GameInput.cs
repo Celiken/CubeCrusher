@@ -10,7 +10,7 @@ public class GameInput : MonoBehaviour
     public event EventHandler<SwapEventArgs> OnSwap;
     public class SwapEventArgs : EventArgs
     {
-        public ColorType.Color color;
+        public Stance.Type color;
     }
 
     InputActions inputActions;
@@ -30,19 +30,19 @@ public class GameInput : MonoBehaviour
 
     private void SwapBlue_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        OnSwap?.Invoke(this, new SwapEventArgs { color = ColorType.Color.Blue });
+        OnSwap?.Invoke(this, new SwapEventArgs { color = Stance.Type.Blue });
     }
     private void SwapRed_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        OnSwap?.Invoke(this, new SwapEventArgs { color = ColorType.Color.Red });
+        OnSwap?.Invoke(this, new SwapEventArgs { color = Stance.Type.Red });
     }
     private void SwapGreen_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        OnSwap?.Invoke(this, new SwapEventArgs { color = ColorType.Color.Green });
+        OnSwap?.Invoke(this, new SwapEventArgs { color = Stance.Type.Green });
     }
     private void SwapYellow_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        OnSwap?.Invoke(this, new SwapEventArgs { color = ColorType.Color.Yellow });
+        OnSwap?.Invoke(this, new SwapEventArgs { color = Stance.Type.Yellow });
     }
 
     public Vector2 GetMovementNormalized()

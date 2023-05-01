@@ -4,17 +4,26 @@ using UnityEngine;
 
 public class HealthComponent : MonoBehaviour
 {
-    [SerializeField] private float maxHP;
-    private float curHP;
+    [SerializeField] private int maxHP;
+    private int curHP;
 
     private void Awake()
     {
         curHP = maxHP;
     }
 
-    public float TakeDamage(float damage)
+    public float TakeDamage(int damage)
     {
         curHP -= damage;
         return curHP;
+    }
+
+    public int GetHPRemaining()
+    {
+        return curHP;
+    }
+    public int GetMaxHP()
+    {
+        return maxHP;
     }
 }

@@ -3,6 +3,7 @@ using UnityEngine;
 public class ForceFieldController : WeaponController
 {
     [SerializeField] protected float lifetime;
+    [SerializeField] public float tick;
     [SerializeField] public float range;
     [SerializeField] private Player player;
 
@@ -14,7 +15,7 @@ public class ForceFieldController : WeaponController
     protected override void Attack()
     {
         base.Attack();
-        ColorType.Color color = ColorType.GetRandomColor();
+        Stance.Type color = Stance.GetRandomColor();
         GameObject field = Instantiate(prefab, transform.position, Quaternion.identity, transform);
         field.GetComponent<MeleeWeaponBehaviour>().Init(this, color, lifetime);
     }
