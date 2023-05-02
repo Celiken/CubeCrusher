@@ -2,51 +2,74 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameInput : MonoBehaviour
 {
     public static GameInput Instance;
 
+    [SerializeField] private bool isGamepad;
+
+    public event EventHandler OnAim;
+
     public event EventHandler<SwapEventArgs> OnSwap;
     public class SwapEventArgs : EventArgs
     {
-        public Stance.Type color;
+        public int direction;
     }
 
     InputActions inputActions;
+
+    private PlayerInput pi;
 
     private void Awake()
     {
         Instance = this;
 
+        pi = GetComponent<PlayerInput>();
         inputActions = new InputActions();
         inputActions.Player.Enable();
 
-        inputActions.Player.SwapBlue.performed += SwapBlue_performed;
-        inputActions.Player.SwapRed.performed += SwapRed_performed;
-        inputActions.Player.SwapGreen.performed += SwapGreen_performed;
-        inputActions.Player.SwapYellow.performed += SwapYellow_performed;
+        inputActions.Player.SwapNext.performed += SwapNext_performed;
+        inputActions.Player.SwapPrev.performed += SwapPrev_performed;
     }
 
-    private void SwapBlue_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void SwapNext_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        OnSwap?.Invoke(this, new SwapEventArgs { color = Stance.Type.Blue });
+        OnSwap?.Invoke(this, new SwapEventArgs { direction = 1 });
     }
-    private void SwapRed_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void SwapPrev_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        OnSwap?.Invoke(this, new SwapEventArgs { color = Stance.Type.Red });
+        OnSwap?.Invoke(this, new SwapEventArgs { direction = -1 });
     }
-    private void SwapGreen_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+
+    public Vector2 GetAimDirection()
     {
-        OnSwap?.Invoke(this, new SwapEventArgs { color = Stance.Type.Green });
-    }
-    private void SwapYellow_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-    {
-        OnSwap?.Invoke(this, new SwapEventArgs { color = Stance.Type.Yellow });
+        return inputActions.Player.Aim.ReadValue<Vector2>().normalized;
     }
 
     public Vector2 GetMovementNormalized()
     {
         return inputActions.Player.Move.ReadValue<Vector2>().normalized;
+    }
+
+    public void OnDeviceChance(PlayerInput pi)
+    {
+        isGamepad = pi.currentControlScheme.Equals("Gamepad") ? true : false;
+        if (isGamepad)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+        }
+    }
+
+    public bool IsGamepad()
+    {
+        return isGamepad;
     }
 }

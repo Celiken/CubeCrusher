@@ -48,8 +48,6 @@ public class ForceFieldBehaviour : MeleeWeaponBehaviour
                 return GameAssets.Instance.redField;
             case Stance.Type.Green:
                 return GameAssets.Instance.greenField;
-            case Stance.Type.Yellow:
-                return GameAssets.Instance.yellowField;
         }
         return null;
     }

@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class Player : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject visual;
     [SerializeField] private GameInput gameInput;
     [SerializeField] private float moveSpeed;
-    [SerializeField] private LayerMask layerPlayer;
+    [SerializeField] private float gamepadSensitivity;
+    [SerializeField] private LayerMask groundMask;
 
     private Vector3 lastMoveDir;
 
@@ -34,7 +36,7 @@ public class Player : MonoBehaviour
 
     private void GameInput_OnSwap(object sender, GameInput.SwapEventArgs e)
     {
-        actualColor = e.color;
+        actualColor = Stance.GetNextColor(actualColor, e.direction);
         SwapRenderMat();
     }
 
@@ -46,6 +48,30 @@ public class Player : MonoBehaviour
     void Update()
     {
         Move();
+        Aim();
+    }
+
+    private void Aim()
+    {
+        if (gameInput.IsGamepad())
+        {
+            Vector2 aimInput = gameInput.GetAimDirection();
+            if (aimInput != Vector2.zero)
+            {
+                Vector3 aimDir = new Vector3(aimInput.x, 0f, aimInput.y);
+                transform.forward = aimDir;
+            }
+        }
+        else
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, groundMask))
+            {
+                var lookDirection = (hit.point - transform.position).normalized;
+                lookDirection.y = 0f;
+                transform.forward = lookDirection;
+            }
+        }
     }
 
     private void Move()

@@ -15,7 +15,6 @@ public class GameAssets : MonoBehaviour
     public Material blueMat;
     public Material redMat;
     public Material greenMat;
-    public Material yellowMat;
 
     [Header("XP")]
     public GameObject xpPrefab;
@@ -24,13 +23,11 @@ public class GameAssets : MonoBehaviour
     public Material blueLaser;
     public Material redLaser;
     public Material greenLaser;
-    public Material yellowLaser;
 
     [Header("ForceField mat")]
     public Material blueField;
     public Material redField;
     public Material greenField;
-    public Material yellowField;
 
     [Header("Damage UI prefabs")]
     public Transform pfDamagePopup;

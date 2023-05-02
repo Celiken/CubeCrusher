@@ -45,8 +45,6 @@ public class LaserBehaviour : ProjectileWeaponBehaviour
                 return GameAssets.Instance.redLaser;
             case Stance.Type.Green:
                 return GameAssets.Instance.greenLaser;
-            case Stance.Type.Yellow:
-                return GameAssets.Instance.yellowLaser;
         }
         return null;
     }

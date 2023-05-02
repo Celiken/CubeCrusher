@@ -1,0 +1,19 @@
+Laser:
+ - Direction by player rotation
+ - Actual Color
+ - Deal X damage
+ - Fire every Xs
+ 
+Guided Missile:
+ - AutoAim random among closest
+ - Actual Color
+ - Deal X damage
+ - Fire every Xs
+ 
+ForceField:
+ - AOE around player
+ - Random Color
+ - Deal X damage
+ - Change Color every Xs
+ - Tick every Xs
+ 
