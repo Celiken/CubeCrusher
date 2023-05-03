@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,10 +13,13 @@ public class XPManager : MonoBehaviour
 
     [Header("Settings Pool XP Orbs")]
     [SerializeField] private int maxXpOrbs;
+    [SerializeField] private Transform parent;
     Queue<GameObject> xpOrbsQueue = new Queue<GameObject>();
 
     [Header("Settings Pop XP Orbs")]
     [SerializeField] private float xpSpread;
+
+    public event EventHandler OnLevelUp;
 
     private int level;
     private int currentXP;
@@ -39,7 +43,7 @@ public class XPManager : MonoBehaviour
         GameObject xpOrb;
         for (int i = 0; i < maxXpOrbs; i++)
         {
-            xpOrb = Instantiate(GameAssets.Instance.xpPrefab, transform);
+            xpOrb = Instantiate(GameAssets.Instance.xpPrefab, parent);
             xpOrb.SetActive(false);
             xpOrbsQueue.Enqueue(xpOrb);
         }
@@ -48,8 +52,8 @@ public class XPManager : MonoBehaviour
     private void SpawnAdditionnalXpOrb(Transform targetTransform)
     {
         GameObject xpOrb;
-        xpOrb = Instantiate(GameAssets.Instance.xpPrefab, transform);
-        xpOrb.transform.position = targetTransform.position + new Vector3(Random.Range(-xpSpread, xpSpread), -.5f, Random.Range(-xpSpread, xpSpread));
+        xpOrb = Instantiate(GameAssets.Instance.xpPrefab, parent);
+        xpOrb.transform.position = targetTransform.position + new Vector3(UnityEngine.Random.Range(-xpSpread, xpSpread), -.5f, UnityEngine.Random.Range(-xpSpread, xpSpread));
         xpOrb.SetActive(true);
     }
 
@@ -66,7 +70,7 @@ public class XPManager : MonoBehaviour
             if (xpOrbsQueue.Count > 0)
             {
                 GameObject xpOrb = xpOrbsQueue.Dequeue();
-                xpOrb.transform.position = targetTransform.position + new Vector3(Random.Range(-xpSpread, xpSpread), -.5f, Random.Range(-xpSpread, xpSpread));
+                xpOrb.transform.position = targetTransform.position + new Vector3(UnityEngine.Random.Range(-xpSpread, xpSpread), -.5f, UnityEngine.Random.Range(-xpSpread, xpSpread));
                 xpOrb.SetActive(true);
             }
             else
@@ -86,6 +90,8 @@ public class XPManager : MonoBehaviour
         level++;
         currentXP -= requiredXP;
         UpdateXPRequired();
+        OnLevelUp?.Invoke(this, EventArgs.Empty);
+
     }
 
     private void UpdateXPRequired()

@@ -8,6 +8,8 @@ public class LaserBehaviour : ProjectileWeaponBehaviour
     [SerializeField] private TrailRenderer trail;
     LaserController controller;
 
+    private int targetPierced;
+
     void Update()
     {
         transform.position += controller.speed * Time.deltaTime * direction;
@@ -24,7 +26,7 @@ public class LaserBehaviour : ProjectileWeaponBehaviour
     {
         controller = ctrl as LaserController;
         base.Init(ctrl, dir, baseSpeed, color);
-
+        targetPierced = 0;
         Material mat = GetColorMat(color);
         if (mat == null)
             Debug.LogError($"Did not found a material for color {color}");
@@ -56,7 +58,9 @@ public class LaserBehaviour : ProjectileWeaponBehaviour
             if (color == enemy.GetActualColor())
             {
                 enemy.Hit(controller.damage);
-                Destroy(this);
+                targetPierced++;
+                if (targetPierced >= controller.pierce)
+                    Destroy(this);
             }
         }
     }

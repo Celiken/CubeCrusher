@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LaserController : WeaponController
 {
-    [SerializeField] private float distance;
+    [SerializeField] public int pierce;
     [SerializeField] private Player player;
 
     protected override void Attack()
@@ -14,7 +14,31 @@ public class LaserController : WeaponController
         base.Attack();
         GameObject projectile = Instantiate(prefab);
         projectile.transform.position = transform.position;
-        projectile.GetComponent<ProjectileWeaponBehaviour>().Init(this, dir, distance / speed, color);
+        projectile.GetComponent<ProjectileWeaponBehaviour>().Init(this, dir, range / speed, color);
+    }
+
+    public override void DoUpgrade(StatUpgrade statUp)
+    {
+        foreach (var up in statUp.upgradeToApplyList)
+        {
+            switch (up.stat)
+            {
+                case Stats.Stat.Damage:
+                    damage *= (int)up.value;
+                    break;
+                case Stats.Stat.Range:
+                    range += up.value;
+                    break;
+                case Stats.Stat.Pierce:
+                    pierce += (int)up.value;
+                    break;
+                case Stats.Stat.Cooldown:
+                    cooldown -= up.value;
+                    if (cooldown <= minCooldown)
+                        cooldown = minCooldown;
+                    break;
+            }
+        }
     }
 }
 
