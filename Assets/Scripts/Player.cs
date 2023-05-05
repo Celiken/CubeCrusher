@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using UnityEngine;
 using UnityEngine.Animations;
 
@@ -8,6 +9,12 @@ public class Player : MonoBehaviour
 
     private XPManager xpManager;
     private CharacterController characterController;
+
+    public event EventHandler<VisualUpdateArgs> OnSwapVisualUpdate;
+    public class VisualUpdateArgs : EventArgs
+    {
+        public Stance.Type newStance;
+    }
 
     [SerializeField] private GameObject visual;
     [SerializeField] private GameInput gameInput;
@@ -43,6 +50,7 @@ public class Player : MonoBehaviour
     private void SwapRenderMat()
     {
         visual.GetComponent<Renderer>().material = Stance.GetMaterialForColor(actualColor);
+        OnSwapVisualUpdate?.Invoke(this, new VisualUpdateArgs { newStance = actualColor });
     }
 
     void Update()
