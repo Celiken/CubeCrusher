@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -36,6 +37,7 @@ public class WeaponsManager : MonoBehaviour
 
     public List<StatUpgrade> GetRandomUpgrade(int count)
     {
+        UpdateAvailableList();
         var list = new List<StatUpgrade>();
 
         if (count > upgradesList.Count)
@@ -44,7 +46,9 @@ public class WeaponsManager : MonoBehaviour
         }
         for (int i = 0; i < count; i++)
         {
-            list.Add(availableUpgrade[Random.Range(0, availableUpgrade.Count)]);
+            var tmp = availableUpgrade[Random.Range(0, availableUpgrade.Count)];
+            list.Add(tmp);
+            availableUpgrade.Remove(tmp);
         }
 
         return list;
@@ -53,7 +57,6 @@ public class WeaponsManager : MonoBehaviour
     public void RemoveUpgrade(StatUpgrade upgrade)
     {
         upgradesList.Remove(upgrade);
-        UpdateAvailableList();
     }
 
     private void UpdateAvailableList()

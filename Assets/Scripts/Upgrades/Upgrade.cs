@@ -12,9 +12,9 @@ public abstract class Upgrade : ScriptableObject
 
     public UpgradeType upgradeType;
     public WeaponsManager.WeaponType weaponType;
-    public Sprite icon;
-    public string name;
+    public Sprite upgradeIcon;
+    public string upgradeName;
     public string description;
 
-    public abstract void DoUpgrade();
+    public abstract bool DoUpgrade();
 }

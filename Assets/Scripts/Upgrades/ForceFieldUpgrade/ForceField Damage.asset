@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeType: 1
   weaponType: 1
-  icon: {fileID: 21300000, guid: e43d2e2d94ae8804283d1a147ee0979a, type: 3}
-  name: Damage
+  upgradeIcon: {fileID: 21300000, guid: e43d2e2d94ae8804283d1a147ee0979a, type: 3}
+  upgradeName: Force Field - Damage
   description: Increase the damage of the forcefield
   upgradeToApplyList:
   - stat: 1

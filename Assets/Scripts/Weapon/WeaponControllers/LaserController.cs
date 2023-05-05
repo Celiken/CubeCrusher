@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LaserController : WeaponController
@@ -17,7 +15,7 @@ public class LaserController : WeaponController
         projectile.GetComponent<ProjectileWeaponBehaviour>().Init(this, dir, range / speed, color);
     }
 
-    public override void DoUpgrade(StatUpgrade statUp)
+    public override bool DoUpgrade(StatUpgrade statUp)
     {
         foreach (var up in statUp.upgradeToApplyList)
         {
@@ -35,10 +33,14 @@ public class LaserController : WeaponController
                 case Stats.Stat.Cooldown:
                     cooldown -= up.value;
                     if (cooldown <= minCooldown)
+                    {
                         cooldown = minCooldown;
+                        return true;
+                    }
                     break;
             }
         }
+        return false;
     }
 }
 

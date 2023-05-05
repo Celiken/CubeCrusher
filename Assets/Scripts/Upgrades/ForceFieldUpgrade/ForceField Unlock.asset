@@ -14,11 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeType: 0
   weaponType: 1
-  icon: {fileID: 21300000, guid: e43d2e2d94ae8804283d1a147ee0979a, type: 3}
-  name: Force Field
+  upgradeIcon: {fileID: 21300000, guid: e43d2e2d94ae8804283d1a147ee0979a, type: 3}
+  upgradeName: Force Field
   description: Create a random forcefield around player
-  weapToUpgrade:
-  - {fileID: 0}
   upgradeToApplyList:
   - stat: 0
     value: 1

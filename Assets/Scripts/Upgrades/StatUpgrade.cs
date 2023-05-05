@@ -16,8 +16,8 @@ public class StatUpgrade : Upgrade
 
     public List<Increase> upgradeToApplyList = new List<Increase>();
 
-    public override void DoUpgrade()
+    public override bool DoUpgrade()
     {
-        WeaponsManager.Instance.weaponDictionary[weaponType].DoUpgrade(this);
+        return WeaponsManager.Instance.weaponDictionary[weaponType].DoUpgrade(this);
     }
 }

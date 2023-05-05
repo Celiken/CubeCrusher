@@ -19,7 +19,7 @@ public class ForceFieldController : WeaponController
         field.GetComponent<MeleeWeaponBehaviour>().Init(this, color, lifetime);
     }
 
-    public override void DoUpgrade(StatUpgrade statUp)
+    public override bool DoUpgrade(StatUpgrade statUp)
     {
         foreach (var up in statUp.upgradeToApplyList)
         {
@@ -39,11 +39,14 @@ public class ForceFieldController : WeaponController
                     break;
                 case Stats.Stat.TickRate:
                     tick -= up.value;
-                    if (cooldown <= minCooldown)
+                    if (cooldown <= minCooldown) {
                         cooldown = minCooldown;
+                        return true;
+                    }
                     break;
             }
         }
+        return false;
     }
 
 }

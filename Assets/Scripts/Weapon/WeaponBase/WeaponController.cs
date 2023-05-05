@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponController : MonoBehaviour
@@ -50,8 +48,9 @@ public class WeaponController : MonoBehaviour
         timeBeforeNextAttack = cooldown;
     }
 
-    public virtual void DoUpgrade(StatUpgrade statUp)
+    public virtual bool DoUpgrade(StatUpgrade statUp)
     {
         Debug.LogError("WeaponController.DoUpgrade() shhould never be called");
+        return false;
     }
 }

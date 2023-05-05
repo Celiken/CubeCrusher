@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeType: 1
   weaponType: 0
-  icon: {fileID: 21300000, guid: c5be86d518c39e649a101ada9e1f0b8a, type: 3}
-  name: Pierce
+  upgradeIcon: {fileID: 21300000, guid: c5be86d518c39e649a101ada9e1f0b8a, type: 3}
+  upgradeName: Laser - Pierce
   description: Increase the pierce of the laser
   upgradeToApplyList:
   - stat: 5

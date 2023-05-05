@@ -15,15 +15,16 @@ public class RowUpgradeUI : MonoBehaviour
     public void Init(StatUpgrade upgrade)
     {
         upgradeRef = upgrade;
-        Icon.sprite = upgrade.icon;
-        Name.text = upgrade.name;
+        Icon.sprite = upgrade.upgradeIcon;
+        Name.text = upgrade.upgradeName;
         Description.text = upgrade.description;
     }
 
     public void OnClick()
     {
-        upgradeRef.DoUpgrade();
-        WeaponsManager.Instance.RemoveUpgrade(upgradeRef);
+        bool maxed = upgradeRef.DoUpgrade();
+        if (upgradeRef.upgradeType == Upgrade.UpgradeType.Unlock || maxed)
+            WeaponsManager.Instance.RemoveUpgrade(upgradeRef);
         UpgradeUI.Instance.EndUpgradeProcess();
     }
 }

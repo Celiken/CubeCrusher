@@ -10,8 +10,6 @@ public class GameInput : MonoBehaviour
 
     [SerializeField] private bool isGamepad;
 
-    public event EventHandler OnAim;
-
     public event EventHandler<SwapEventArgs> OnSwap;
     public class SwapEventArgs : EventArgs
     {
