@@ -90,6 +90,7 @@ public class Enemy : MonoBehaviour
     {
         XPManager.Instance.SpawnXP(transform, Random.Range(xpMinAmount, xpMaxAmount + 1));
         EnemyTargeter.Instance.RemoveEnemy(this);
+        GameManager.Instance.AddKill();
         Destroy(gameObject);
     }
 }

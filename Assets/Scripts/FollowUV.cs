@@ -21,6 +21,11 @@ public class FollowUV : MonoBehaviour
     private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+
+    }
+
+    void Update()
+    {
         sr.material.SetColor("_Tint", Tint);
         sr.material.SetFloat("_OverallScale", OverallScale);
         sr.material.SetFloat("_ClipThreshold", ClipThreshold);
@@ -29,10 +34,7 @@ public class FollowUV : MonoBehaviour
         sr.material.SetFloat("_BrightnessVariationScale", BrightnessVariationScale);
         sr.material.SetFloat("_BrightnessPower", BrightnessPower);
         sr.material.SetFloat("_Brightness", Brightness);
-    }
 
-    void Update()
-    {
         Vector2 offset;
         offset.x = transform.position.x / transform.localScale.x / parralax;
         offset.y = transform.position.z / transform.localScale.y / parralax;

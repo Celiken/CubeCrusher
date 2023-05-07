@@ -49,16 +49,16 @@ public class GameInput : MonoBehaviour
     public void OnDeviceChance(PlayerInput pi)
     {
         isGamepad = pi.currentControlScheme.Equals("Gamepad") ? true : false;
-        if (isGamepad)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Confined;
-            Cursor.visible = true;
-        }
+        //if (isGamepad)
+        //{
+        //    Cursor.lockState = CursorLockMode.Locked;
+        //    Cursor.visible = false;
+        //}
+        //else
+        //{
+        //    Cursor.lockState = CursorLockMode.Confined;
+        //    Cursor.visible = true;
+        //}
     }
 
     public bool IsGamepad()

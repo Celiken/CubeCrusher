@@ -44,7 +44,7 @@ public class UpgradeUI : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void PopulateUpgradeList(List<StatUpgrade> upgradeList)
+    public void PopulateUpgradeList(List<WeaponStatUpgrade> upgradeList)
     {
         foreach (var upgrade in upgradeList)
         {

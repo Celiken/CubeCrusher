@@ -10,9 +10,9 @@ public class RowUpgradeUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI Name;
     [SerializeField] private TextMeshProUGUI Description;
 
-    private StatUpgrade upgradeRef;
+    private WeaponStatUpgrade upgradeRef;
 
-    public void Init(StatUpgrade upgrade)
+    public void Init(WeaponStatUpgrade upgrade)
     {
         upgradeRef = upgrade;
         Icon.sprite = upgrade.upgradeIcon;
@@ -23,7 +23,7 @@ public class RowUpgradeUI : MonoBehaviour
     public void OnClick()
     {
         bool maxed = upgradeRef.DoUpgrade();
-        if (upgradeRef.upgradeType == Upgrade.UpgradeType.Unlock || maxed)
+        if (upgradeRef.upgradeType == WeaponUpgrade.UpgradeType.Unlock || maxed)
             WeaponsManager.Instance.RemoveUpgrade(upgradeRef);
         UpgradeUI.Instance.EndUpgradeProcess();
     }

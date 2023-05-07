@@ -5,16 +5,16 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class StatUpgrade : Upgrade
+public class WeaponStatUpgrade : WeaponUpgrade
 {
     [Serializable]
-    public struct Increase
+    public struct WeaponIncrease
     {
-        public Stats.Stat stat;
+        public Stats.WeaoponStat stat;
         public float value;
     }
 
-    public List<Increase> upgradeToApplyList = new List<Increase>();
+    public List<WeaponIncrease> upgradeToApplyList = new List<WeaponIncrease>();
 
     public override bool DoUpgrade()
     {

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8cbb4371abde8b2438c94eeae336897b, type: 3}
-  m_Name: Laser Damage
+  m_Name: ForceField Cooldown
   m_EditorClassIdentifier: 
   upgradeType: 1
-  weaponType: 0
-  upgradeIcon: {fileID: 21300000, guid: c5be86d518c39e649a101ada9e1f0b8a, type: 3}
-  upgradeName: Laser - Damage
-  description: Increase the damage of the laser
+  weaponType: 1
+  upgradeIcon: {fileID: 21300000, guid: e43d2e2d94ae8804283d1a147ee0979a, type: 3}
+  upgradeName: Force Field - Cooldown
+  description: Decrease the cooldown of the force field
   upgradeToApplyList:
-  - stat: 1
-    value: 3
+  - stat: 3
+    value: 1

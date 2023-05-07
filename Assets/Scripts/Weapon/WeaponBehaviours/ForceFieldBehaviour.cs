@@ -13,9 +13,9 @@ public class ForceFieldBehaviour : MeleeWeaponBehaviour
     private void Update()
     {
         timerNextTick += Time.deltaTime;
-        if (timerNextTick >= controller.tick)
+        if (timerNextTick >= controller.tickRate)
         {
-            timerNextTick -= controller.tick;
+            timerNextTick -= controller.tickRate;
             Tick();
         }
     }

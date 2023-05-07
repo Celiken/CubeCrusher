@@ -14,7 +14,7 @@ public class SpawnerManager : MonoBehaviour
 
     private Player player;
 
-    private Vector3 lastSpawnPosition;
+    private Vector3 lastSpawnDirection;
 
     private float nextSpawnTimer;
     private int nextSpawnPosRandomPicking;
@@ -25,7 +25,7 @@ public class SpawnerManager : MonoBehaviour
         nextSpawnTimer = 0;
         nextSpawnPosRandomPicking = 0;
         player = Player.Instance;
-        lastSpawnPosition = PickRandomDirection();
+        lastSpawnDirection = PickRandomDirection();
     }
 
     // Update is called once per frame
@@ -45,10 +45,10 @@ public class SpawnerManager : MonoBehaviour
         if (nextSpawnPosRandomPicking >= spawnPositionSwapRate)
         {
             nextSpawnPosRandomPicking = 0;
-            lastSpawnPosition = PickNewSpawnDirection();
+            lastSpawnDirection = PickNewSpawnDirection();
         }
-        GameObject enemyGO = Instantiate(enemyPrefab, player.transform.position + (lastSpawnPosition * spawnDistance), Quaternion.identity, centerPoint);
-        lastSpawnPosition = Quaternion.AngleAxis((Random.value < 0.5f ? -1 : 1) * absoluteSpawnAngle, Vector3.up) * lastSpawnPosition;
+        GameObject enemyGO = Instantiate(enemyPrefab, player.transform.position + (lastSpawnDirection * spawnDistance), Quaternion.identity, centerPoint);
+        lastSpawnDirection = Quaternion.AngleAxis((Random.value < 0.5f ? -1 : 1) * absoluteSpawnAngle, Vector3.up) * lastSpawnDirection;
     }
 
     public Vector3 PickRandomDirection()

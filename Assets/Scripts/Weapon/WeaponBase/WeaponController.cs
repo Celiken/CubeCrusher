@@ -4,14 +4,20 @@ public class WeaponController : MonoBehaviour
 {
     [Header("Weapon")]
     [SerializeField] public WeaponsManager.WeaponType type;
+    [SerializeField] protected GameObject prefab;
     [SerializeField] public bool unlock;
 
+    [Header("Player")]
+    [SerializeField] protected Player player;
+
     [Header("Weapon Stats")]
-    [SerializeField] protected GameObject prefab;
+    [Header("Cooldown")]
     [SerializeField] protected float minCooldown;
-    [SerializeField] protected float cooldown;
+    [SerializeField] public float cooldown;
+    [Header("Range")]
+    [SerializeField] protected float maxRange;
     [SerializeField] public float range;
-    [SerializeField] public float speed;
+    [Header("Damage")]
     [SerializeField] public int damage;
 
     private float timeBeforeNextAttack;
@@ -48,7 +54,7 @@ public class WeaponController : MonoBehaviour
         timeBeforeNextAttack = cooldown;
     }
 
-    public virtual bool DoUpgrade(StatUpgrade statUp)
+    public virtual bool DoUpgrade(WeaponStatUpgrade statUp)
     {
         Debug.LogError("WeaponController.DoUpgrade() shhould never be called");
         return false;
