@@ -81,7 +81,7 @@ public class Enemy : MonoBehaviour
 
     public void Hit(int damage)
     {
-        DamagePopup.Create(damagePosition.position, damage, color);
+        DamagePopupUI.Create(damagePosition.position, damage, color);
         if (healthComponent.TakeDamage(damage) <= 0)
             DestroySelf();
     }

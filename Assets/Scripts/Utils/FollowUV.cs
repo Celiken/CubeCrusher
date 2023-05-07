@@ -21,7 +21,6 @@ public class FollowUV : MonoBehaviour
     private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
-
     }
 
     void Update()

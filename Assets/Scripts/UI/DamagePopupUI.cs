@@ -5,12 +5,12 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class DamagePopup : MonoBehaviour
+public class DamagePopupUI : MonoBehaviour
 {
-    public static DamagePopup Create(Vector3 position, int damageAmount, Stance.Type color)
+    public static DamagePopupUI Create(Vector3 position, int damageAmount, Stance.Type color)
     {
         Transform damagePopupTransform = Instantiate(GameAssets.Instance.pfDamagePopup, position, Quaternion.identity);
-        DamagePopup damagePopup = damagePopupTransform.GetComponent<DamagePopup>();
+        DamagePopupUI damagePopup = damagePopupTransform.GetComponent<DamagePopupUI>();
         damagePopup.Setup(damageAmount, position, color);
         return damagePopup;
     }

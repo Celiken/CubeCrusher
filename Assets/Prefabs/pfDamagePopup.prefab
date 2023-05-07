@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6128175659886721500}
   - component: {fileID: 6128175659886721503}
   - component: {fileID: 6128175659886721502}
-  - component: {fileID: 6128175659886721497}
   - component: {fileID: 776362085450838777}
   - component: {fileID: 4275877980144665351}
+  - component: {fileID: 8506975207837650851}
   m_Layer: 0
   m_Name: pfDamagePopup
   m_TagString: Untagged
@@ -175,18 +175,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 6128175659886721503}
   m_maskType: 0
---- !u!114 &6128175659886721497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6128175659886721496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0745a2c052b0b1469aba125da6bf49a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &776362085450838777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,3 +200,16 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &8506975207837650851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6128175659886721496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7206657263a2eab4c8e09d57408b187b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animDuration: 0.5
