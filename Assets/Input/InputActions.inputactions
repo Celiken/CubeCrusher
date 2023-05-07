@@ -31,15 +31,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Aim",
-                    "type": "Value",
-                    "id": "cdb6b9cd-970b-4df3-9c67-02ace6ef04d5",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -133,6 +124,17 @@
                 },
                 {
                     "name": "",
+                    "id": "deae6557-a20b-46da-87f9-4a8aa5cc511b",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwapNext",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "4332507d-a9ba-465a-ba4c-8f479ae4d42f",
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
@@ -155,12 +157,12 @@
                 },
                 {
                     "name": "",
-                    "id": "d7695195-04e5-41ed-b5ad-3c48cd1a1448",
-                    "path": "<Gamepad>/rightStick",
+                    "id": "f27cab7b-39e5-42da-b739-102309f5a35b",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
-                    "processors": "StickDeadzone",
-                    "groups": "Gamepad",
-                    "action": "Aim",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwapPrev",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

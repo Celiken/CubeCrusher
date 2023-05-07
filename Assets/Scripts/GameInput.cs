@@ -41,11 +41,6 @@ public class GameInput : MonoBehaviour
         OnSwap?.Invoke(this, new SwapEventArgs { direction = -1 });
     }
 
-    public Vector2 GetAimDirection()
-    {
-        return inputActions.Player.Aim.ReadValue<Vector2>().normalized;
-    }
-
     public Vector2 GetMovementNormalized()
     {
         return inputActions.Player.Move.ReadValue<Vector2>().normalized;

@@ -71,7 +71,7 @@ public class Enemy : MonoBehaviour
 
     private void ChangeRender()
     {
-        visualGO.GetComponent<Renderer>().material = Stance.GetMaterialForColor(color);
+        visualGO.GetComponent<Renderer>().material = Stance.GetEnemyMaterialForColor(color);
     }
 
     public Stance.Type GetActualColor()

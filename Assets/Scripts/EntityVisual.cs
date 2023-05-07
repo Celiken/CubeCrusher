@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerVisual : MonoBehaviour
+public class EntityVisual : MonoBehaviour
 {
     private Vector3 rotationAxisSpeed;
 

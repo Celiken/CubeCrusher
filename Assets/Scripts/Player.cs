@@ -49,37 +49,13 @@ public class Player : MonoBehaviour
 
     private void SwapRenderMat()
     {
-        visual.GetComponent<Renderer>().material = Stance.GetMaterialForColor(actualColor);
+        visual.GetComponent<Renderer>().material = Stance.GetPlayerMaterialForColor(actualColor);
         OnSwapVisualUpdate?.Invoke(this, new VisualUpdateArgs { newStance = actualColor });
     }
 
     void Update()
     {
         Move();
-        Aim();
-    }
-
-    private void Aim()
-    {
-        if (gameInput.IsGamepad())
-        {
-            Vector2 aimInput = gameInput.GetAimDirection();
-            if (aimInput != Vector2.zero)
-            {
-                Vector3 aimDir = new Vector3(aimInput.x, 0f, aimInput.y);
-                transform.forward = aimDir;
-            }
-        }
-        else
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, groundMask))
-            {
-                var lookDirection = (hit.point - transform.position).normalized;
-                lookDirection.y = 0f;
-                transform.forward = lookDirection;
-            }
-        }
     }
 
     private void Move()

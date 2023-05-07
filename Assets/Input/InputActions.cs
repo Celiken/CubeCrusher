@@ -53,15 +53,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Aim"",
-                    ""type"": ""Value"",
-                    ""id"": ""cdb6b9cd-970b-4df3-9c67-02ace6ef04d5"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -155,6 +146,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""deae6557-a20b-46da-87f9-4a8aa5cc511b"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwapNext"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""4332507d-a9ba-465a-ba4c-8f479ae4d42f"",
                     ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
@@ -177,12 +179,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d7695195-04e5-41ed-b5ad-3c48cd1a1448"",
-                    ""path"": ""<Gamepad>/rightStick"",
+                    ""id"": ""f27cab7b-39e5-42da-b739-102309f5a35b"",
+                    ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
-                    ""processors"": ""StickDeadzone"",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Aim"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwapPrev"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -224,7 +226,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_SwapNext = m_Player.FindAction("SwapNext", throwIfNotFound: true);
         m_Player_SwapPrev = m_Player.FindAction("SwapPrev", throwIfNotFound: true);
-        m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -289,7 +290,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_SwapNext;
     private readonly InputAction m_Player_SwapPrev;
-    private readonly InputAction m_Player_Aim;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -297,7 +297,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @SwapNext => m_Wrapper.m_Player_SwapNext;
         public InputAction @SwapPrev => m_Wrapper.m_Player_SwapPrev;
-        public InputAction @Aim => m_Wrapper.m_Player_Aim;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -316,9 +315,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @SwapPrev.started += instance.OnSwapPrev;
             @SwapPrev.performed += instance.OnSwapPrev;
             @SwapPrev.canceled += instance.OnSwapPrev;
-            @Aim.started += instance.OnAim;
-            @Aim.performed += instance.OnAim;
-            @Aim.canceled += instance.OnAim;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -332,9 +328,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @SwapPrev.started -= instance.OnSwapPrev;
             @SwapPrev.performed -= instance.OnSwapPrev;
             @SwapPrev.canceled -= instance.OnSwapPrev;
-            @Aim.started -= instance.OnAim;
-            @Aim.performed -= instance.OnAim;
-            @Aim.canceled -= instance.OnAim;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -375,6 +368,5 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnSwapNext(InputAction.CallbackContext context);
         void OnSwapPrev(InputAction.CallbackContext context);
-        void OnAim(InputAction.CallbackContext context);
     }
 }
