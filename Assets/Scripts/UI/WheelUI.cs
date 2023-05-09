@@ -1,10 +1,14 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class WheelUI : MonoBehaviour
 {
+    private int KBM_Index = 0;
+    private int Gamepad_Index = 1;
+
     [SerializeField] private Transform blueUI;
     [SerializeField] private Transform redUI;
     [SerializeField] private Transform greenUI;
@@ -13,9 +17,20 @@ public class WheelUI : MonoBehaviour
     [SerializeField] private Transform rightFixPoint;
     [SerializeField] private Transform leftFixPoint;
 
+    [SerializeField] private TextMeshProUGUI nextBinding;
+    [SerializeField] private TextMeshProUGUI prevBinding;
+
     private void Start()
     {
         Player.Instance.OnSwapVisualUpdate += Player_OnSwapVisualUpdate;
+        GameInput.Instance.OnDeviceChanged += GameInput_OnDeviceChanged; 
+    }
+
+    private void GameInput_OnDeviceChanged(object sender, System.EventArgs e)
+    {
+        bool isGamepad = GameInput.Instance.IsGamepad();
+        nextBinding.text = isGamepad ? GameInput.Instance.inputActions.Player.SwapNext.bindings[Gamepad_Index].ToDisplayString() : GameInput.Instance.inputActions.Player.SwapNext.bindings[KBM_Index].ToDisplayString();
+        prevBinding.text = isGamepad ? GameInput.Instance.inputActions.Player.SwapPrev.bindings[Gamepad_Index].ToDisplayString() : GameInput.Instance.inputActions.Player.SwapPrev.bindings[KBM_Index].ToDisplayString();
     }
 
     private void Player_OnSwapVisualUpdate(object sender, Player.VisualUpdateArgs e)

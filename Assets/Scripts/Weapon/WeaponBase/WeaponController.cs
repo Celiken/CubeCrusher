@@ -18,13 +18,16 @@ public class WeaponController : MonoBehaviour
     [SerializeField] protected float maxRange;
     [SerializeField] public float range;
     [Header("Damage")]
-    [SerializeField] public float damage;
+    [SerializeField] public float baseDamage;
+    private int levelDamage = 1;
+    private float damage;
 
     private float timeBeforeNextAttack;
 
     private void Awake()
     {
         gameObject.SetActive(unlock);
+        damage = baseDamage;
     }
 
     protected virtual void Start()
@@ -62,7 +65,8 @@ public class WeaponController : MonoBehaviour
                 Unlock();
                 break;
             case Stats.WeaponStat.Damage:
-                damage *= upgrade.value;
+                levelDamage++;
+                damage = baseDamage * Mathf.Pow(levelDamage, upgrade.value);
                 break;
             case Stats.WeaponStat.Range:
                 range += upgrade.value;
@@ -82,5 +86,10 @@ public class WeaponController : MonoBehaviour
                 break;
         }
         return false;
+    }
+
+    public float GetDamage()
+    {
+        return damage;
     }
 }

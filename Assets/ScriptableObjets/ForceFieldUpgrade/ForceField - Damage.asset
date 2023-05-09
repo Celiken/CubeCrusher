@@ -19,4 +19,4 @@ MonoBehaviour:
   description: Increase the damage dealt by the force field
   upgradeToApply:
     stat: 1
-    value: 1.2
+    value: 1.1

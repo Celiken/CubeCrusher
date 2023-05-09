@@ -6,17 +6,25 @@ public class ForceFieldController : WeaponController
     [SerializeField] protected float minTickRate;
     [SerializeField] public float tickRate;
 
+    private Stance.Type currentField;
+    private GameObject forceField;
+
     protected override void Start()
     {
+        forceField = Instantiate(prefab, transform.position, Quaternion.identity, transform);
         base.Start();
     }
 
     protected override void Attack()
     {
         base.Attack();
-        Stance.Type color = Stance.GetRandomColor();
-        GameObject field = Instantiate(prefab, transform.position, Quaternion.identity, transform);
-        field.GetComponent<MeleeWeaponBehaviour>().Init(this, color, cooldown);
+        Stance.Type newField;
+        do
+        {
+            newField = Stance.GetRandomColor();
+        } while (newField == currentField);
+        currentField = newField;
+        forceField.GetComponent<MeleeWeaponBehaviour>().Init(this, currentField, cooldown);
     }
 
     public override bool DoUpgrade(WeaponUpgradeSO.WeaponIncrease upgrade)

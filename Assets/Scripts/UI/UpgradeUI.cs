@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpgradeUI : MonoBehaviour
 {
@@ -36,7 +37,9 @@ public class UpgradeUI : MonoBehaviour
         upgradePanel.SetActive(true);
         var list = weaponsManager.GetRandomUpgrade(3);
         PopulateUpgradeList(list);
+        SelectItemInList();
     }
+
     public void EndUpgradeProcess()
     {
         ClearUpgradeList();
@@ -51,6 +54,11 @@ public class UpgradeUI : MonoBehaviour
             GameObject row = Instantiate(prefab, parent);
             row.GetComponent<RowUpgradeUI>().Init(upgrade);
         }
+    }
+
+    public void SelectItemInList()
+    {
+        parent.GetChild(1).GetComponent<Button>().Select();
     }
 
     public void ClearUpgradeList()

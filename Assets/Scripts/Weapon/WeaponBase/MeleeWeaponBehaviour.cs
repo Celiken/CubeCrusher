@@ -7,6 +7,5 @@ public class MeleeWeaponBehaviour : MonoBehaviour
     public virtual void Init<T>(T ctrl, Stance.Type color, float lifetime)
     {
         this.color = color;
-        Destroy(gameObject, lifetime);
     }
 }

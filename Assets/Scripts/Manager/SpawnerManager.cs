@@ -51,7 +51,8 @@ public class SpawnerManager : MonoBehaviour
 
     public void IncreaseSpawnRate()
     {
-        spawnRate *= 1.05f;
+        if (spawnRate < 50f)
+            spawnRate *= 1.08f;
     }
 
     public void SpawnEnemy()
@@ -64,7 +65,7 @@ public class SpawnerManager : MonoBehaviour
 
         int safetyNet = 50;
         int offset;
-        for (offset = 0;  offset < safetyNet; offset++)
+        for (offset = 0; offset < safetyNet; offset++)
         {
             if (PreventSpawnLocationOverlap(offset))
                 break;

@@ -12,10 +12,11 @@ public class ForceFieldBehaviour : MeleeWeaponBehaviour
 
     private void Update()
     {
-        timerNextTick += Time.deltaTime;
-        if (timerNextTick >= controller.tickRate)
+        timerNextTick -= Time.deltaTime;
+        if (timerNextTick <= 0f)
         {
-            timerNextTick -= controller.tickRate;
+            ClearListEntity();
+            timerNextTick = controller.tickRate;
             Tick();
         }
         transform.localScale = new Vector3(controller.range, 5f, controller.range);
@@ -55,7 +56,7 @@ public class ForceFieldBehaviour : MeleeWeaponBehaviour
     {
         if (other.TryGetComponent(out Enemy enemy))
         {
-            if (color == enemy.GetActualColor() && !listEnemyOnField.Contains(enemy))
+            if (!listEnemyOnField.Contains(enemy))
             {
                 listEnemyOnField.Add(enemy);
             }
@@ -66,21 +67,26 @@ public class ForceFieldBehaviour : MeleeWeaponBehaviour
     {
         if (other.TryGetComponent(out Enemy enemy))
         {
-            if (color == enemy.GetActualColor() && listEnemyOnField.Contains(enemy))
+            if (listEnemyOnField.Contains(enemy))
             {
                 listEnemyOnField.Remove(enemy);
             }
         }
     }
 
+    private void ClearListEntity()
+    {
+        listEnemyOnField.RemoveAll(x => x == null);
+    }
+
     private void Tick()
     {
         foreach (var enemy in listEnemyOnField)
         {
-            if (enemy != null)
+            if (enemy != null && color == enemy.GetActualColor())
             {
                 bool isCrit = Player.Instance.GetStats().GetStatComponent<CritRateStat>(Stats.EntityStat.CritRate).IsCrit();
-                enemy.Hit(isCrit ? (controller.damage * Player.Instance.GetStats().GetStatComponent<CritDamageStat>(Stats.EntityStat.CritDamage).GetBaseValue()) : controller.damage, isCrit);
+                enemy.Hit(isCrit ? (controller.GetDamage() * Player.Instance.GetStats().GetStatComponent<CritDamageStat>(Stats.EntityStat.CritDamage).GetBaseValue()) : controller.GetDamage(), isCrit);
             }
         }
     }

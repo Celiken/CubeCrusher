@@ -10,13 +10,15 @@ public class GameInput : MonoBehaviour
 
     [SerializeField] private bool isGamepad;
 
+    public event EventHandler OnDeviceChanged;
+
     public event EventHandler<SwapEventArgs> OnSwap;
     public class SwapEventArgs : EventArgs
     {
         public int direction;
     }
 
-    InputActions inputActions;
+    public InputActions inputActions;
 
     private PlayerInput pi;
 
@@ -28,16 +30,21 @@ public class GameInput : MonoBehaviour
         inputActions = new InputActions();
         inputActions.Player.Enable();
 
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         inputActions.Player.SwapNext.performed += SwapNext_performed;
         inputActions.Player.SwapPrev.performed += SwapPrev_performed;
     }
 
     private void SwapNext_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
+        if (Time.timeScale == 0f) return;
         OnSwap?.Invoke(this, new SwapEventArgs { direction = 1 });
     }
     private void SwapPrev_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
+        if (Time.timeScale == 0f) return;
         OnSwap?.Invoke(this, new SwapEventArgs { direction = -1 });
     }
 
@@ -46,19 +53,20 @@ public class GameInput : MonoBehaviour
         return inputActions.Player.Move.ReadValue<Vector2>().normalized;
     }
 
-    public void OnDeviceChance(PlayerInput pi)
+    public void OnDeviceChange(PlayerInput pi)
     {
         isGamepad = pi.currentControlScheme.Equals("Gamepad") ? true : false;
-        //if (isGamepad)
-        //{
-        //    Cursor.lockState = CursorLockMode.Locked;
-        //    Cursor.visible = false;
-        //}
-        //else
-        //{
-        //    Cursor.lockState = CursorLockMode.Confined;
-        //    Cursor.visible = true;
-        //}
+        OnDeviceChanged?.Invoke(this, EventArgs.Empty);
+        if (isGamepad)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+        }
     }
 
     public bool IsGamepad()
