@@ -4,7 +4,18 @@ using UnityEngine;
 
 public class Stats
 {
-    public enum WeaoponStat
+    public enum EntityStat
+    {
+        Life,
+        LifeRegen,
+        MoveSpeed,
+        Armor,
+        BaseDamage,
+        CritRate,
+        CritDamage,
+    }
+
+    public enum WeaponStat
     {
         Unlock,
         Damage,

@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.Animations;
 
@@ -8,6 +9,7 @@ public class Player : MonoBehaviour
     public static Player Instance;
 
     private XPManager xpManager;
+    private StatsManager statsManager;
     private CharacterController characterController;
 
     public event EventHandler<VisualUpdateArgs> OnSwapVisualUpdate;
@@ -28,6 +30,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        statsManager = GetComponent<StatsManager>();
         characterController = GetComponent<CharacterController>();
         Instance = this;
         lastMoveDir = Vector3.zero;
@@ -49,13 +52,19 @@ public class Player : MonoBehaviour
 
     private void SwapRenderMat()
     {
-        visual.GetComponent<Renderer>().material = Stance.GetPlayerMaterialForColor(actualColor);
+        visual.GetComponent<Renderer>().material = Stance.GetPlayerMaterial(actualColor);
         OnSwapVisualUpdate?.Invoke(this, new VisualUpdateArgs { newStance = actualColor });
     }
 
     void Update()
     {
         Move();
+    }
+
+    public void TakeDamage(float damage)
+    {
+        statsManager.GetStatComponent<LifeStat>(Stats.EntityStat.Life).TakeDamage(damage);
+        visual.GetComponent<EntityVisual>().GetHit();
     }
 
     private void Move()

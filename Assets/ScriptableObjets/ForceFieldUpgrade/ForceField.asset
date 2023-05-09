@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cbb4371abde8b2438c94eeae336897b, type: 3}
-  m_Name: ForceField TickRate
+  m_Script: {fileID: 11500000, guid: 65eae6b5e3039354785eada22c63129c, type: 3}
+  m_Name: ForceField
   m_EditorClassIdentifier: 
-  upgradeType: 1
+  upgradeType: 0
   weaponType: 1
   upgradeIcon: {fileID: 21300000, guid: e43d2e2d94ae8804283d1a147ee0979a, type: 3}
-  upgradeName: Force Field - Tick Rate
-  description: Decrease the time between each ticks
-  upgradeToApplyList:
-  - stat: 4
-    value: 0.1
+  upgradeName: Force Field
+  description: Create a force field around the player
+  upgradeToApply:
+    stat: 0
+    value: 1

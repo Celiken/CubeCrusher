@@ -19,42 +19,20 @@ public class ForceFieldController : WeaponController
         field.GetComponent<MeleeWeaponBehaviour>().Init(this, color, cooldown);
     }
 
-    public override bool DoUpgrade(WeaponStatUpgrade statUp) // return true if maxed
+    public override bool DoUpgrade(WeaponUpgradeSO.WeaponIncrease upgrade)
     {
-        foreach (var up in statUp.upgradeToApplyList)
+        switch (upgrade.stat)
         {
-            switch (up.stat)
-            {
-                case Stats.WeaoponStat.Unlock:
-                    Unlock();
-                    break;
-                case Stats.WeaoponStat.Damage:
-                    damage += (int)up.value;
-                    break;
-                case Stats.WeaoponStat.Range:
-                    range += up.value;
-                    if (range >= maxRange)
-                    {
-                        range = maxRange;
-                        return true;
-                    }
-                    break;
-                case Stats.WeaoponStat.Cooldown:
-                    cooldown -= up.value;
-                    if (cooldown <= minCooldown)
-                    {
-                        cooldown = minCooldown;
-                        return true;
-                    }
-                    break;
-                case Stats.WeaoponStat.TickRate:
-                    tickRate -= up.value;
-                    if (tickRate <= minTickRate) {
-                        tickRate = minTickRate;
-                        return true;
-                    }
-                    break;
-            }
+            case Stats.WeaponStat.TickRate:
+                tickRate -= upgrade.value;
+                if (tickRate <= minTickRate)
+                {
+                    tickRate = minTickRate;
+                    return true;
+                }
+                break;
+            default:
+                return base.DoUpgrade(upgrade);
         }
         return false;
     }

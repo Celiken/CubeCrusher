@@ -18,6 +18,7 @@ public class ForceFieldBehaviour : MeleeWeaponBehaviour
             timerNextTick -= controller.tickRate;
             Tick();
         }
+        transform.localScale = new Vector3(controller.range, 5f, controller.range);
     }
 
     public override void Init<T>(T ctrl, Stance.Type color, float lifetime)
@@ -27,7 +28,7 @@ public class ForceFieldBehaviour : MeleeWeaponBehaviour
 
         timerNextTick = 0f;
 
-        transform.localScale = new Vector3(controller.range, controller.range, controller.range);
+        transform.localScale = new Vector3(controller.range, 5f, controller.range);
 
         Material mat = GetColorMat(color);
         if (mat == null)

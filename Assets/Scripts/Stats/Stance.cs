@@ -27,7 +27,7 @@ public static class Stance
         return (Type)newColorVal;
     }
 
-    public static Material GetEnemyMaterialForColor(Type color)
+    public static Material GetEnemyMaterial(Type color)
     {
         switch (color)
         {
@@ -41,7 +41,7 @@ public static class Stance
         }
     }
     
-    public static Material GetPlayerMaterialForColor(Type color)
+    public static Material GetPlayerMaterial(Type color)
     {
         switch (color)
         {
@@ -55,7 +55,7 @@ public static class Stance
         }
     }
 
-    public static VertexGradient GetColorGradientForColor(Type color)
+    public static VertexGradient GetColorGradientForTextUI(Type color)
     {
         switch (color)
         {

@@ -17,14 +17,14 @@ public class WeaponsManager : MonoBehaviour
     [SerializeField] private List<WeaponController> weapons;
     public Dictionary<WeaponType, WeaponController> weaponDictionary;
 
-    [SerializeField] private List<WeaponStatUpgrade> upgradesList;
-    private List<WeaponStatUpgrade> availableUpgrade;
+    [SerializeField] private List<WeaponUpgradeSO> upgradesList;
+    private List<WeaponUpgradeSO> availableUpgrade;
 
     private void Awake()
     {
         Instance = this;
         weaponDictionary = new Dictionary<WeaponType, WeaponController>();
-        availableUpgrade = new List<WeaponStatUpgrade>();
+        availableUpgrade = new List<WeaponUpgradeSO>();
         foreach (var weapon in weapons)
         {
             weaponDictionary.Add(weapon.type, weapon);
@@ -36,10 +36,10 @@ public class WeaponsManager : MonoBehaviour
         UpdateAvailableList();
     }
 
-    public List<WeaponStatUpgrade> GetRandomUpgrade(int count)
+    public List<WeaponUpgradeSO> GetRandomUpgrade(int count)
     {
         UpdateAvailableList();
-        var list = new List<WeaponStatUpgrade>();
+        var list = new List<WeaponUpgradeSO>();
 
         if (count > upgradesList.Count)
         {
@@ -55,7 +55,7 @@ public class WeaponsManager : MonoBehaviour
         return list;
     }
 
-    public void RemoveUpgrade(WeaponStatUpgrade upgrade)
+    public void RemoveUpgrade(WeaponUpgradeSO upgrade)
     {
         upgradesList.Remove(upgrade);
     }
@@ -65,11 +65,11 @@ public class WeaponsManager : MonoBehaviour
         availableUpgrade.Clear();
         foreach (var upgrade in upgradesList)
         {
-            if (upgrade.upgradeType != WeaponUpgrade.UpgradeType.Unlock && weaponDictionary[upgrade.weaponType].unlock)
+            if (upgrade.upgradeType != WeaponUpgradeSO.UpgradeType.Unlock && weaponDictionary[upgrade.weaponType].unlock)
             {
                 availableUpgrade.Add(upgrade);
             }
-            else if (upgrade.upgradeType == WeaponUpgrade.UpgradeType.Unlock && !weaponDictionary[upgrade.weaponType].unlock)
+            else if (upgrade.upgradeType == WeaponUpgradeSO.UpgradeType.Unlock && !weaponDictionary[upgrade.weaponType].unlock)
             {
                 availableUpgrade.Add(upgrade);
             }

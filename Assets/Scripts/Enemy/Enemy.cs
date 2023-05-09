@@ -9,8 +9,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Transform damagePosition;
     
     [SerializeField] private float moveSpeed;
+    
+    [SerializeField] private float attackRange;
+    [SerializeField] private float attackCooldown;
 
-    [SerializeField] private GameObject visualGO;
+    private float timerAttack;
+
+    [SerializeField] private GameObject visual;
 
     [SerializeField] private int xpMinAmount;
     [SerializeField] private int xpMaxAmount;
@@ -25,18 +30,19 @@ public class Enemy : MonoBehaviour
 
     private Player playerTarget;
     private CharacterController characterController;
-    private HealthComponent healthComponent;
+    private StatsManager statManager;
 
     private Stance.Type color;
 
     private void Awake()
     {
-        healthComponent = GetComponent<HealthComponent>();
+        statManager = GetComponent<StatsManager>();
         characterController = GetComponent<CharacterController>();
     }
 
     void Start()
     {
+        timerAttack = attackCooldown;
         playerTarget = Player.Instance;
         color = Stance.GetRandomColor();
         EnemyTargeter.Instance.AddEnemy(this);
@@ -46,6 +52,7 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        timerAttack -= Time.deltaTime;
         timerApprox -= Time.deltaTime;
         if (timerApprox <= 0f)
         {
@@ -53,6 +60,17 @@ public class Enemy : MonoBehaviour
             timerApprox = timerApproxMax;
         }
         Move();
+        AttackIfPlayerInRange();
+    }
+
+    private void AttackIfPlayerInRange()
+    {
+        Vector3 targetDir = (playerTarget.transform.position - transform.position);
+        if (targetDir.magnitude <= attackRange && timerAttack <= 0f)
+        {
+            timerAttack = attackCooldown;
+            playerTarget.TakeDamage(statManager.GetStatComponent<BaseDamageStat>(Stats.EntityStat.BaseDamage).GetBaseDamage());
+        }
     }
 
     private void Move()
@@ -71,7 +89,7 @@ public class Enemy : MonoBehaviour
 
     private void ChangeRender()
     {
-        visualGO.GetComponent<Renderer>().material = Stance.GetEnemyMaterialForColor(color);
+        visual.GetComponent<Renderer>().material = Stance.GetEnemyMaterial(color);
     }
 
     public Stance.Type GetActualColor()
@@ -82,7 +100,8 @@ public class Enemy : MonoBehaviour
     public void Hit(int damage)
     {
         DamagePopupUI.Create(damagePosition.position, damage, color);
-        if (healthComponent.TakeDamage(damage) <= 0)
+        visual.GetComponent<EntityVisual>().GetHit();
+        if (statManager.GetStatComponent<LifeStat>(Stats.EntityStat.Life).TakeDamage(damage) <= 0)
             DestroySelf();
     }
 

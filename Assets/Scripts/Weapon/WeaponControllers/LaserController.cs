@@ -24,35 +24,15 @@ public class LaserController : WeaponController
         }
     }
 
-    public override bool DoUpgrade(WeaponStatUpgrade statUp)
+    public override bool DoUpgrade(WeaponUpgradeSO.WeaponIncrease upgrade)
     {
-        foreach (var up in statUp.upgradeToApplyList)
+        switch (upgrade.stat)
         {
-            switch (up.stat)
-            {
-                case Stats.WeaoponStat.Damage:
-                    damage += (int)up.value;
-                    break;
-                case Stats.WeaoponStat.Range:
-                    range += up.value;
-                    if (range >= maxRange)
-                    {
-                        range = maxRange;
-                        return true;
-                    }
-                    break;
-                case Stats.WeaoponStat.Pierce:
-                    pierce += (int)up.value;
-                    break;
-                case Stats.WeaoponStat.Cooldown:
-                    cooldown -= up.value;
-                    if (cooldown <= minCooldown)
-                    {
-                        cooldown = minCooldown;
-                        return true;
-                    }
-                    break;
-            }
+            case Stats.WeaponStat.Pierce:
+                pierce += (int)upgrade.value;
+                break;
+            default:
+                return base.DoUpgrade(upgrade);
         }
         return false;
     }

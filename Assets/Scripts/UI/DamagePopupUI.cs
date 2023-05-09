@@ -31,7 +31,7 @@ public class DamagePopupUI : MonoBehaviour
     public void Setup(int damage, Vector3 position, Stance.Type color)
     {
         textMesh.text = damage.ToString();
-        textMesh.colorGradient = Stance.GetColorGradientForColor(color);
+        textMesh.colorGradient = Stance.GetColorGradientForTextUI(color);
         float moveXOffset = Random.Range(-1f, 1f);
         float moveYOffset = Random.Range(0, 1f);
         float moveZOffset = Random.Range(-1f, 1f);

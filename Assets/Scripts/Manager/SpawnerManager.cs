@@ -12,6 +12,8 @@ public class SpawnerManager : MonoBehaviour
     [SerializeField] private int spawnPositionSwapRate;
     [SerializeField] private float spawnDistance = 50f;
 
+    [SerializeField] private LayerMask spawnLayerMask;
+
     private Player player;
 
     private Vector3 lastSpawnDirection;
@@ -47,8 +49,28 @@ public class SpawnerManager : MonoBehaviour
             nextSpawnPosRandomPicking = 0;
             lastSpawnDirection = PickNewSpawnDirection();
         }
-        GameObject enemyGO = Instantiate(enemyPrefab, player.transform.position + (lastSpawnDirection * spawnDistance), Quaternion.identity, centerPoint);
-        lastSpawnDirection = Quaternion.AngleAxis((Random.value < 0.5f ? -1 : 1) * absoluteSpawnAngle, Vector3.up) * lastSpawnDirection;
+
+        int safetyNet = 50;
+        int offset;
+        for (offset = 0;  offset < safetyNet; offset++)
+        {
+            lastSpawnDirection = PickNewSpawnDirection();
+            if (PreventSpawnLocationOverlap(offset))
+                break;
+        }
+        if (offset < safetyNet)
+        {
+            GameObject enemyGO = Instantiate(enemyPrefab, player.transform.position + (lastSpawnDirection * (spawnDistance + offset)), Quaternion.identity, centerPoint);
+            lastSpawnDirection = Quaternion.AngleAxis((Random.value < 0.5f ? -1 : 1) * absoluteSpawnAngle, Vector3.up) * lastSpawnDirection;
+        }
+    }
+
+    private bool PreventSpawnLocationOverlap(int offset)
+    {
+        Vector3 finalPos = player.transform.position + (lastSpawnDirection * (spawnDistance + offset));
+        Collider[] collider = new Collider[1];
+        int nbOverlap = Physics.OverlapSphereNonAlloc(finalPos, 2f, collider, spawnLayerMask);
+        return nbOverlap == 0;
     }
 
     public Vector3 PickRandomDirection()
@@ -63,9 +85,9 @@ public class SpawnerManager : MonoBehaviour
 
     public Vector3 PickNewSpawnDirection()
     {
-        Vector3 playerDir = player.GetLastMoveDir();
-        if (playerDir == Vector3.zero)
-            return PickRandomDirection();
-        return playerDir;
+        //Vector3 playerDir = player.GetLastMoveDir();
+        //if (playerDir == Vector3.zero)
+        return PickRandomDirection();
+        //return playerDir;
     }
 }

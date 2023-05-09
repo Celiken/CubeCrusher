@@ -54,9 +54,33 @@ public class WeaponController : MonoBehaviour
         timeBeforeNextAttack = cooldown;
     }
 
-    public virtual bool DoUpgrade(WeaponStatUpgrade statUp)
+    public virtual bool DoUpgrade(WeaponUpgradeSO.WeaponIncrease upgrade)
     {
-        Debug.LogError("WeaponController.DoUpgrade() shhould never be called");
+        switch (upgrade.stat)
+        {
+            case Stats.WeaponStat.Unlock:
+                Unlock();
+                break;
+            case Stats.WeaponStat.Damage:
+                damage += (int)upgrade.value;
+                break;
+            case Stats.WeaponStat.Range:
+                range += upgrade.value;
+                if (range >= maxRange)
+                {
+                    range = maxRange;
+                    return true;
+                }
+                break;
+            case Stats.WeaponStat.Cooldown:
+                cooldown -= upgrade.value;
+                if (cooldown <= minCooldown)
+                {
+                    cooldown = minCooldown;
+                    return true;
+                }
+                break;
+        }
         return false;
     }
 }
