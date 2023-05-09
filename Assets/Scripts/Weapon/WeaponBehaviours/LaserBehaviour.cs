@@ -58,7 +58,7 @@ public class LaserBehaviour : ProjectileWeaponBehaviour
             if (color == enemy.GetActualColor())
             {
                 bool isCrit = Player.Instance.GetStats().GetStatComponent<CritRateStat>(Stats.EntityStat.CritRate).IsCrit();
-                enemy.Hit(isCrit ? (int)(controller.damage * Player.Instance.GetStats().GetStatComponent<CritDamageStat>(Stats.EntityStat.CritDamage).GetBaseValue()) : controller.damage, isCrit);
+                enemy.Hit(isCrit ? (controller.damage * Player.Instance.GetStats().GetStatComponent<CritDamageStat>(Stats.EntityStat.CritDamage).GetBaseValue()) : controller.damage, isCrit);
                 targetPierced++;
                 if (targetPierced >= controller.pierce)
                     Destroy(this);

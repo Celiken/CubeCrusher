@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,12 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartGame();
+        XPManager.Instance.OnLevelUp += XPManager_OnLevelUp;
+    }
+
+    private void XPManager_OnLevelUp(object sender, EventArgs e)
+    {
+        SpawnerManager.Instance.IncreaseSpawnRate();
     }
 
     public void StartGame()

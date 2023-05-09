@@ -81,9 +81,9 @@ public class Enemy : MonoBehaviour
         return color;
     }
 
-    public void Hit(int damage, bool isCrit)
+    public void Hit(float damage, bool isCrit)
     {
-        int finalDmg = (int)(damage - statManager.GetStatComponent<ArmorStat>(Stats.EntityStat.Armor).GetBaseValue());
+        int finalDmg = Mathf.RoundToInt(damage - statManager.GetStatComponent<ArmorStat>(Stats.EntityStat.Armor).GetBaseValue());
         DamagePopupUI.Create(damagePosition.position, finalDmg, color, isCrit);
         visual.GetComponent<EntityVisual>().GetHit();
         if (statManager.GetStatComponent<LifeStat>(Stats.EntityStat.Life).TakeDamage(finalDmg) <= 0)

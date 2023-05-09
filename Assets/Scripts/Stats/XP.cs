@@ -1,7 +1,4 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class XP : MonoBehaviour
@@ -9,14 +6,11 @@ public class XP : MonoBehaviour
     private Player player;
 
     private int amount;
-    private XPManager manager;
 
     [SerializeField] private float minSpeed;
     [SerializeField] private float maxSpeed;
 
     private float speed;
-
-    private Tweener tweener;
 
     private void Awake()
     {
@@ -27,7 +21,6 @@ public class XP : MonoBehaviour
     void Start()
     {
         amount = 1;
-        manager = XPManager.Instance;
     }
 
     private void Update()

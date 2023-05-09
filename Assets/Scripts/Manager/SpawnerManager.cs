@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpawnerManager : MonoBehaviour
 {
+    public static SpawnerManager Instance;
+
     [SerializeField] private Transform centerPoint;
     [SerializeField] private GameObject enemyPrefab;
 
@@ -21,6 +23,11 @@ public class SpawnerManager : MonoBehaviour
     private float nextSpawnTimer;
     private int nextSpawnPosRandomPicking;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,13 +40,18 @@ public class SpawnerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        nextSpawnTimer += Time.deltaTime;
-        if (nextSpawnTimer > spawnRate)
+        nextSpawnTimer -= Time.deltaTime;
+        if (nextSpawnTimer <= 0f)
         {
-            nextSpawnTimer -= spawnRate;
+            nextSpawnTimer = 1f / spawnRate;
             SpawnEnemy();
             nextSpawnPosRandomPicking++;
         }
+    }
+
+    public void IncreaseSpawnRate()
+    {
+        spawnRate *= 1.05f;
     }
 
     public void SpawnEnemy()

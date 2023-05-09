@@ -7,7 +7,7 @@ public class EntityVisual : MonoBehaviour
 {
     [SerializeField] private GameObject visualDamage;
 
-    private Color baseColorDamage = new Color(1f, 0f, 0f, 1f);
+    private Color baseColorDamage = new Color(1f, 1f, 1f, 1f) * 1.5f;
     private Vector3 rotationAxisSpeed;
 
     private void Awake()
@@ -17,7 +17,7 @@ public class EntityVisual : MonoBehaviour
 
     private void Start()
     {
-        visualDamage.GetComponent<Renderer>().material.color = new Color(1f, 0f, 0f, 0f);
+        visualDamage.GetComponent<Renderer>().material.color = new Color(1f, 1f, 1f, 0f);
     }
 
     // Update is called once per frame

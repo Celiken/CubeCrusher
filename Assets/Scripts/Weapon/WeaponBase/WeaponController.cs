@@ -18,7 +18,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField] protected float maxRange;
     [SerializeField] public float range;
     [Header("Damage")]
-    [SerializeField] public int damage;
+    [SerializeField] public float damage;
 
     private float timeBeforeNextAttack;
 
@@ -62,7 +62,7 @@ public class WeaponController : MonoBehaviour
                 Unlock();
                 break;
             case Stats.WeaponStat.Damage:
-                damage += (int)upgrade.value;
+                damage *= upgrade.value;
                 break;
             case Stats.WeaponStat.Range:
                 range += upgrade.value;

@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        statManager.GetStatComponent<LifeStat>(Stats.EntityStat.Life).TakeDamage(damage - statManager.GetStatComponent<ArmorStat>(Stats.EntityStat.Armor).GetBaseValue());
+        statManager.GetStatComponent<LifeStat>(Stats.EntityStat.Life).TakeDamage(Mathf.RoundToInt(damage - statManager.GetStatComponent<ArmorStat>(Stats.EntityStat.Armor).GetBaseValue()));
         visual.GetComponent<EntityVisual>().GetHit();
     }
 
