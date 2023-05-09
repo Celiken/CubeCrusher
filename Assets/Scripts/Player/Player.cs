@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public static Player Instance;
 
     private XPManager xpManager;
-    private StatsManager statsManager;
+    private StatsManager statManager;
     private CharacterController characterController;
 
     public event EventHandler<VisualUpdateArgs> OnSwapVisualUpdate;
@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        statsManager = GetComponent<StatsManager>();
+        statManager = GetComponent<StatsManager>();
         characterController = GetComponent<CharacterController>();
         Instance = this;
         lastMoveDir = Vector3.zero;
@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
         xpManager = XPManager.Instance;
         actualColor = Stance.GetRandomColor();
         SwapRenderMat();
+        statManager.InitLevel(0);
         gameInput.OnSwap += GameInput_OnSwap;
     }
 
@@ -62,7 +63,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        statsManager.GetStatComponent<LifeStat>(Stats.EntityStat.Life).TakeDamage(damage - statsManager.GetStatComponent<ArmorStat>(Stats.EntityStat.Armor).GetStatValue());
+        statManager.GetStatComponent<LifeStat>(Stats.EntityStat.Life).TakeDamage(damage - statManager.GetStatComponent<ArmorStat>(Stats.EntityStat.Armor).GetBaseValue());
         visual.GetComponent<EntityVisual>().GetHit();
     }
 
@@ -70,7 +71,7 @@ public class Player : MonoBehaviour
     {
         Vector2 input = gameInput.GetMovementNormalized();
         Vector3 moveDir = new Vector3(input.x, 0f, input.y);
-        float moveDistance = statsManager.GetStatComponent<MoveSpeedStat>(Stats.EntityStat.MoveSpeed).GetStatValue() * Time.deltaTime;
+        float moveDistance = statManager.GetStatComponent<MoveSpeedStat>(Stats.EntityStat.MoveSpeed).GetBaseValue() * Time.deltaTime;
         characterController.Move(moveDir * moveDistance);
         lastMoveDir = moveDir;
     }
@@ -90,5 +91,10 @@ public class Player : MonoBehaviour
         xpManager.AddXP(amount);
     }
 
-    public StatsManager GetStats() { return statsManager; }
+    public int GetLevel()
+    {
+        return xpManager.GetLevel();
+    }
+
+    public StatsManager GetStats() { return statManager; }
 }

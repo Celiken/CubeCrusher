@@ -39,6 +39,7 @@ public class Enemy : MonoBehaviour
         color = Stance.GetRandomColor();
         EnemyTargeter.Instance.AddEnemy(this);
         ChangeRender();
+        statManager.InitLevel(Player.Instance.GetLevel());
     }
 
     void Update()
@@ -55,8 +56,8 @@ public class Enemy : MonoBehaviour
         {
             timerAttack = attackCooldown;
             bool isCrit = statManager.GetStatComponent<CritRateStat>(Stats.EntityStat.CritRate).IsCrit();
-            float baseDmg = statManager.GetStatComponent<BaseDamageStat>(Stats.EntityStat.BaseDamage).GetStatValue();
-            float critDmg = statManager.GetStatComponent<CritDamageStat>(Stats.EntityStat.CritDamage).GetStatValue();
+            float baseDmg = statManager.GetStatComponent<BaseDamageStat>(Stats.EntityStat.BaseDamage).GetBaseValue();
+            float critDmg = statManager.GetStatComponent<CritDamageStat>(Stats.EntityStat.CritDamage).GetBaseValue();
             playerTarget.TakeDamage(isCrit ? baseDmg * critDmg : baseDmg);
         }
     }
@@ -65,7 +66,7 @@ public class Enemy : MonoBehaviour
     {
         Vector3 moveDir = (playerTarget.transform.position - transform.position).normalized;
 
-        float moveDistance = statManager.GetStatComponent<MoveSpeedStat>(Stats.EntityStat.MoveSpeed).GetStatValue() * Time.deltaTime;
+        float moveDistance = statManager.GetStatComponent<MoveSpeedStat>(Stats.EntityStat.MoveSpeed).GetBaseValue() * Time.deltaTime;
 
         characterController.Move(moveDir * moveDistance);
     }
@@ -82,7 +83,7 @@ public class Enemy : MonoBehaviour
 
     public void Hit(int damage, bool isCrit)
     {
-        int finalDmg = (int)(damage - statManager.GetStatComponent<ArmorStat>(Stats.EntityStat.Armor).GetStatValue());
+        int finalDmg = (int)(damage - statManager.GetStatComponent<ArmorStat>(Stats.EntityStat.Armor).GetBaseValue());
         DamagePopupUI.Create(damagePosition.position, finalDmg, color, isCrit);
         visual.GetComponent<EntityVisual>().GetHit();
         if (statManager.GetStatComponent<LifeStat>(Stats.EntityStat.Life).TakeDamage(finalDmg) <= 0)

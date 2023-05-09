@@ -8,9 +8,4 @@ public class ArmorStat : BaseStat
     {
         return base.DoUpgrade(statUpgrade);
     }
-
-    private void Awake()
-    {
-        stat = Stats.EntityStat.Armor;
-    }
 }

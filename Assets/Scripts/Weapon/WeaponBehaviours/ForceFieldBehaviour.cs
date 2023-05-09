@@ -80,7 +80,7 @@ public class ForceFieldBehaviour : MeleeWeaponBehaviour
             if (enemy != null)
             {
                 bool isCrit = Player.Instance.GetStats().GetStatComponent<CritRateStat>(Stats.EntityStat.CritRate).IsCrit();
-                enemy.Hit(isCrit ? (int)(controller.damage * Player.Instance.GetStats().GetStatComponent<CritDamageStat>(Stats.EntityStat.CritDamage).GetStatValue()) : controller.damage, isCrit);
+                enemy.Hit(isCrit ? (int)(controller.damage * Player.Instance.GetStats().GetStatComponent<CritDamageStat>(Stats.EntityStat.CritDamage).GetBaseValue()) : controller.damage, isCrit);
             }
         }
     }

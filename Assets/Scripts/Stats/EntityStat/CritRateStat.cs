@@ -9,11 +9,6 @@ public class CritRateStat : BaseStat
         return base.DoUpgrade(statUpgrade);
     }
 
-    private void Awake()
-    {
-        stat = Stats.EntityStat.CritRate;
-    }
-
     public bool IsCrit()
     {
         return Random.Range(0f, 1f) <= baseValue;

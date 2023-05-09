@@ -4,9 +4,4 @@ public class MoveSpeedStat : BaseStat
     {
         return base.DoUpgrade(statUpgrade);
     }
-
-    private void Awake()
-    {
-        stat = Stats.EntityStat.MoveSpeed;
-    }
 }

@@ -7,10 +7,10 @@ public class LifeStat : BaseStat
         return base.DoUpgrade(statUpgrade);
     }
 
-    private void Awake()
+    public override void InitLevel(int level)
     {
-        stat = Stats.EntityStat.Life;
-        currentLife = (int)baseValue;
+        base.InitLevel(level);
+        currentLife = value;
     }
 
     public int TakeDamage(float damage)
@@ -23,7 +23,7 @@ public class LifeStat : BaseStat
     public int Heal(float heal)
     {
         currentLife += heal;
-        if (currentLife >= baseValue) currentLife = (int)baseValue;
+        if (currentLife >= value) currentLife = (int)value;
         return (int)currentLife;
     }
 
@@ -33,6 +33,6 @@ public class LifeStat : BaseStat
     }
     public int GetMaxHP()
     {
-        return (int)baseValue;
+        return (int)value;
     }
 }

@@ -86,7 +86,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damagePosition: {fileID: 4825892673778595457}
-  moveSpeed: 2
   attackRange: 1
   attackCooldown: 0.5
   visual: {fileID: 2266709898464680340}
@@ -95,8 +94,6 @@ MonoBehaviour:
   layerEnemy:
     serializedVersion: 2
     m_Bits: 64
-  approxDistance: 3
-  timerApproxMax: 10
 --- !u!143 &3925714341109890900
 CharacterController:
   m_ObjectHideFlags: 0
@@ -146,7 +143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08a26b716ba2ccf45a7969b7d737d2d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stat: 0
   baseValue: 5
+  statMultiplier: 1.1
 --- !u!114 &-1352543471587584204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,7 +158,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af4faf09c1ec21049a88f7bb4bbc69a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stat: 4
   baseValue: 5
+  statMultiplier: 1.1
 --- !u!114 &9125080471234035333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,7 +173,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aa711d4d28cd1841a8a85a4873e1f5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stat: 3
   baseValue: 0
+  statMultiplier: 0
 --- !u!114 &4260979554030148655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +188,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5eef793a5e0d8f4593de9d77308d71d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stat: 6
   baseValue: 2
+  statMultiplier: 1.1
 --- !u!114 &4684848799131555226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,7 +203,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f4ac3eb831499444a49aa9d3117bde6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stat: 5
   baseValue: 10
+  statMultiplier: 1.1
 --- !u!114 &8754158956722844692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,7 +218,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cfe7c895be128544a1273d9595d1ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stat: 2
   baseValue: 2
+  statMultiplier: 1.1
 --- !u!1001 &1420201190390785221
 PrefabInstance:
   m_ObjectHideFlags: 0
