@@ -2213,6 +2213,10 @@ GameObject:
   - component: {fileID: 1022841457}
   - component: {fileID: 1022841459}
   - component: {fileID: 1022841458}
+  - component: {fileID: 1022841463}
+  - component: {fileID: 1022841462}
+  - component: {fileID: 1022841461}
+  - component: {fileID: 1022841460}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -2253,7 +2257,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visual: {fileID: 1323275041}
   gameInput: {fileID: 1051543415}
-  moveSpeed: 5
   gamepadSensitivity: 5
   groundMask:
     serializedVersion: 2
@@ -2308,6 +2311,10 @@ MonoBehaviour:
   statsList:
   - {fileID: 1022841459}
   - {fileID: 1022841458}
+  - {fileID: 1022841463}
+  - {fileID: 1022841462}
+  - {fileID: 1022841461}
+  - {fileID: 1022841460}
 --- !u!114 &1022841458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2334,6 +2341,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseValue: 100
+--- !u!114 &1022841460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022841451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cfe7c895be128544a1273d9595d1ce2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseValue: 5
+--- !u!114 &1022841461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022841451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f4ac3eb831499444a49aa9d3117bde6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseValue: 0.1
+--- !u!114 &1022841462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022841451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5eef793a5e0d8f4593de9d77308d71d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseValue: 2
+--- !u!114 &1022841463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022841451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aa711d4d28cd1841a8a85a4873e1f5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseValue: 0
 --- !u!1 &1026700399
 GameObject:
   m_ObjectHideFlags: 0
@@ -2470,6 +2529,38 @@ MonoBehaviour:
   redField: {fileID: 2100000, guid: b6089cfd99422d645b15451978f95834, type: 2}
   pfDamagePopup: {fileID: 6128175659886721500, guid: a71a1e0da11f32a4ca529baab729baca,
     type: 3}
+  damageFont: {fileID: 2100000, guid: 2dcd0696d59e76043ae86c50af5eb8cd, type: 2}
+  critDamageFont: {fileID: 2100000, guid: ae7554d9cb25d5c499fbdca04da35da1, type: 2}
+  blueGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 0, g: 0, b: 1, a: 1}
+    bottomRight: {r: 0, g: 0, b: 1, a: 1}
+  greenGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 0, g: 1, b: 0, a: 1}
+    bottomRight: {r: 0, g: 1, b: 0, a: 1}
+  redGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 0, b: 0, a: 1}
+    bottomRight: {r: 1, g: 0, b: 0, a: 1}
+  blueCritGradient:
+    topLeft: {r: 0, g: 0, b: 1, a: 1}
+    topRight: {r: 0, g: 0, b: 1, a: 1}
+    bottomLeft: {r: 0, g: 0, b: 1, a: 1}
+    bottomRight: {r: 0, g: 0, b: 1, a: 1}
+  greenCritGradient:
+    topLeft: {r: 0, g: 1, b: 0, a: 1}
+    topRight: {r: 0, g: 1, b: 0, a: 1}
+    bottomLeft: {r: 0, g: 1, b: 0, a: 1}
+    bottomRight: {r: 0, g: 1, b: 0, a: 1}
+  redCritGradient:
+    topLeft: {r: 1, g: 0, b: 0, a: 1}
+    topRight: {r: 1, g: 0, b: 0, a: 1}
+    bottomLeft: {r: 1, g: 0, b: 0, a: 1}
+    bottomRight: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &1051543414
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,7 +20,6 @@ public class Player : MonoBehaviour
 
     [SerializeField] private GameObject visual;
     [SerializeField] private GameInput gameInput;
-    [SerializeField] private float moveSpeed;
     [SerializeField] private float gamepadSensitivity;
     [SerializeField] private LayerMask groundMask;
 
@@ -63,7 +62,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        statsManager.GetStatComponent<LifeStat>(Stats.EntityStat.Life).TakeDamage(damage);
+        statsManager.GetStatComponent<LifeStat>(Stats.EntityStat.Life).TakeDamage(damage - statsManager.GetStatComponent<ArmorStat>(Stats.EntityStat.Armor).GetStatValue());
         visual.GetComponent<EntityVisual>().GetHit();
     }
 
@@ -71,7 +70,7 @@ public class Player : MonoBehaviour
     {
         Vector2 input = gameInput.GetMovementNormalized();
         Vector3 moveDir = new Vector3(input.x, 0f, input.y);
-        float moveDistance = moveSpeed * Time.deltaTime;
+        float moveDistance = statsManager.GetStatComponent<MoveSpeedStat>(Stats.EntityStat.MoveSpeed).GetStatValue() * Time.deltaTime;
         characterController.Move(moveDir * moveDistance);
         lastMoveDir = moveDir;
     }
@@ -90,4 +89,6 @@ public class Player : MonoBehaviour
     {
         xpManager.AddXP(amount);
     }
+
+    public StatsManager GetStats() { return statsManager; }
 }

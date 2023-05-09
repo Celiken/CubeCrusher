@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameAssets : MonoBehaviour
@@ -24,16 +25,30 @@ public class GameAssets : MonoBehaviour
     [Header("XP")]
     public GameObject xpPrefab;
 
-    [Header("Laser mat")]
+    [Header("Laser Mat")]
     public Material blueLaser;
     public Material greenLaser;
     public Material redLaser;
 
-    [Header("ForceField mat")]
+    [Header("ForceField Mat")]
     public Material blueField;
     public Material greenField;
     public Material redField;
 
-    [Header("Damage UI prefabs")]
+    [Header("Damage UI Prefabs")]
     public Transform pfDamagePopup;
+
+    [Header("Damage UI Fonts")]
+    public Material damageFont;
+    public Material critDamageFont;
+
+    [Header("Damage UI Gradient")]
+    public VertexGradient blueGradient;
+    public VertexGradient greenGradient;
+    public VertexGradient redGradient;
+
+    [Header("Crit Damage UI Gradient")]
+    public VertexGradient blueCritGradient;
+    public VertexGradient greenCritGradient;
+    public VertexGradient redCritGradient;
 }

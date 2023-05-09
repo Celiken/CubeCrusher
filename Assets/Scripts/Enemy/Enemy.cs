@@ -7,9 +7,7 @@ using UnityEngine.UIElements;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private Transform damagePosition;
-    
-    [SerializeField] private float moveSpeed;
-    
+        
     [SerializeField] private float attackRange;
     [SerializeField] private float attackCooldown;
 
@@ -21,12 +19,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int xpMaxAmount;
 
     [SerializeField] LayerMask layerEnemy;
-
-    [SerializeField] private float approxDistance;
-    [SerializeField] private float timerApproxMax;
-
-    private Vector3 positionApprox = Vector3.zero;
-    private float timerApprox;
 
     private Player playerTarget;
     private CharacterController characterController;
@@ -47,18 +39,11 @@ public class Enemy : MonoBehaviour
         color = Stance.GetRandomColor();
         EnemyTargeter.Instance.AddEnemy(this);
         ChangeRender();
-        timerApprox = 0f;
     }
 
     void Update()
     {
         timerAttack -= Time.deltaTime;
-        timerApprox -= Time.deltaTime;
-        if (timerApprox <= 0f)
-        {
-            RefreshTargetApprox();
-            timerApprox = timerApproxMax;
-        }
         Move();
         AttackIfPlayerInRange();
     }
@@ -69,22 +54,20 @@ public class Enemy : MonoBehaviour
         if (targetDir.magnitude <= attackRange && timerAttack <= 0f)
         {
             timerAttack = attackCooldown;
-            playerTarget.TakeDamage(statManager.GetStatComponent<BaseDamageStat>(Stats.EntityStat.BaseDamage).GetBaseDamage());
+            bool isCrit = statManager.GetStatComponent<CritRateStat>(Stats.EntityStat.CritRate).IsCrit();
+            float baseDmg = statManager.GetStatComponent<BaseDamageStat>(Stats.EntityStat.BaseDamage).GetStatValue();
+            float critDmg = statManager.GetStatComponent<CritDamageStat>(Stats.EntityStat.CritDamage).GetStatValue();
+            playerTarget.TakeDamage(isCrit ? baseDmg * critDmg : baseDmg);
         }
     }
 
     private void Move()
     {
-        Vector3 moveDir = (playerTarget.transform.position - (transform.position + positionApprox)).normalized;
+        Vector3 moveDir = (playerTarget.transform.position - transform.position).normalized;
 
-        float moveDistance = moveSpeed * Time.deltaTime;
+        float moveDistance = statManager.GetStatComponent<MoveSpeedStat>(Stats.EntityStat.MoveSpeed).GetStatValue() * Time.deltaTime;
 
         characterController.Move(moveDir * moveDistance);
-    }
-
-    private void RefreshTargetApprox()
-    {
-        positionApprox = new Vector3(Random.Range(-approxDistance, approxDistance), 0f, Random.Range(-approxDistance, approxDistance));
     }
 
     private void ChangeRender()
@@ -97,11 +80,12 @@ public class Enemy : MonoBehaviour
         return color;
     }
 
-    public void Hit(int damage)
+    public void Hit(int damage, bool isCrit)
     {
-        DamagePopupUI.Create(damagePosition.position, damage, color);
+        int finalDmg = (int)(damage - statManager.GetStatComponent<ArmorStat>(Stats.EntityStat.Armor).GetStatValue());
+        DamagePopupUI.Create(damagePosition.position, finalDmg, color, isCrit);
         visual.GetComponent<EntityVisual>().GetHit();
-        if (statManager.GetStatComponent<LifeStat>(Stats.EntityStat.Life).TakeDamage(damage) <= 0)
+        if (statManager.GetStatComponent<LifeStat>(Stats.EntityStat.Life).TakeDamage(finalDmg) <= 0)
             DestroySelf();
     }
 

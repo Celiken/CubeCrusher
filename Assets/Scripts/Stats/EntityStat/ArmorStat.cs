@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseDamageStat : BaseStat
+public class ArmorStat : BaseStat
 {
     public override bool DoUpgrade(StatUpgradeSO.StatIncrease statUpgrade)
     {
@@ -11,6 +11,6 @@ public class BaseDamageStat : BaseStat
 
     private void Awake()
     {
-        stat = Stats.EntityStat.BaseDamage;
+        stat = Stats.EntityStat.Armor;
     }
 }

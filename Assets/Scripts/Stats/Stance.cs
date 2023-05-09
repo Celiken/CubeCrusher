@@ -40,7 +40,7 @@ public static class Stance
                 return GameAssets.Instance.greenEnemyMat;
         }
     }
-    
+
     public static Material GetPlayerMaterial(Type color)
     {
         switch (color)
@@ -55,17 +55,22 @@ public static class Stance
         }
     }
 
-    public static VertexGradient GetColorGradientForTextUI(Type color)
+    public static Material GetDamageFont(bool isCrit)
+    {
+        return isCrit ? GameAssets.Instance.critDamageFont : GameAssets.Instance.damageFont;
+    }
+
+    public static VertexGradient GetColorGradientForTextUI(Type color, bool isCrit)
     {
         switch (color)
         {
             default:
             case Type.Blue:
-                return new VertexGradient(Color.white, Color.white, Color.blue, Color.blue);
+                return isCrit ? GameAssets.Instance.blueCritGradient : GameAssets.Instance.blueGradient;
             case Type.Red:
-                return new VertexGradient(Color.white, Color.white, Color.red, Color.red);
+                return isCrit ? GameAssets.Instance.redCritGradient : GameAssets.Instance.redGradient;
             case Type.Green:
-                return new VertexGradient(Color.white, Color.white, Color.green, Color.green);
+                return isCrit ? GameAssets.Instance.greenCritGradient : GameAssets.Instance.greenGradient;
         }
     }
 }

@@ -18,4 +18,9 @@ public class BaseStat : MonoBehaviour
     {
         return stat;
     }
+
+    public float GetStatValue()
+    {
+        return baseValue;
+    }
 }
