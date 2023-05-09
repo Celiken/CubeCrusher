@@ -5102,9 +5102,9 @@ MonoBehaviour:
   centerPoint: {fileID: 2144522914}
   enemyPrefab: {fileID: 1519477677475320315, guid: ba2db421a69eb434480953cea5846c94,
     type: 3}
-  spawnRate: 0.1
-  absoluteSpawnAngle: 5
-  spawnPositionSwapRate: 1
+  spawnRate: 1
+  absoluteSpawnAngle: 15
+  spawnPositionSwapRate: 3
   spawnDistance: 15
   spawnLayerMask:
     serializedVersion: 2

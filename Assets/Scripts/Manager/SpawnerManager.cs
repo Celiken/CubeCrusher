@@ -54,7 +54,6 @@ public class SpawnerManager : MonoBehaviour
         int offset;
         for (offset = 0;  offset < safetyNet; offset++)
         {
-            lastSpawnDirection = PickNewSpawnDirection();
             if (PreventSpawnLocationOverlap(offset))
                 break;
         }
@@ -85,9 +84,9 @@ public class SpawnerManager : MonoBehaviour
 
     public Vector3 PickNewSpawnDirection()
     {
-        //Vector3 playerDir = player.GetLastMoveDir();
-        //if (playerDir == Vector3.zero)
-        return PickRandomDirection();
-        //return playerDir;
+        Vector3 playerDir = player.GetLastMoveDir();
+        if (playerDir == Vector3.zero)
+            return PickRandomDirection();
+        return playerDir;
     }
 }
