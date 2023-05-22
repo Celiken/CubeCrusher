@@ -27,28 +27,10 @@ public class LaserBehaviour : ProjectileWeaponBehaviour
         controller = ctrl as LaserController;
         base.Init(ctrl, dir, baseSpeed, color);
         targetPierced = 0;
-        Material mat = GetColorMat(color);
-        if (mat == null)
-            Debug.LogError($"Did not found a material for color {color}");
-        else
-        {
-            mainProj.GetComponent<Renderer>().material = mat;
-            trail.material = mat;
-        }
-    }
-
-    private Material GetColorMat(Stance.Type color)
-    {
-        switch (color)
-        {
-            case Stance.Type.Blue:
-                return GameAssets.Instance.blueLaser;
-            case Stance.Type.Red:
-                return GameAssets.Instance.redLaser;
-            case Stance.Type.Green:
-                return GameAssets.Instance.greenLaser;
-        }
-        return null;
+        mainProj.GetComponent<Renderer>().material.SetColor("_BaseColor", Stance.GetColor(color));
+        mainProj.GetComponent<Renderer>().material.SetColor("_EmissionColor", Stance.GetColor(color) * 2f);
+        trail.material.SetColor("_BaseColor", Stance.GetColor(color));
+        trail.material.SetColor("_EmissionColor", Stance.GetColor(color) * 2f);
     }
 
     private void OnTriggerEnter(Collider other)

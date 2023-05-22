@@ -12,28 +12,8 @@ public class GameAssets : MonoBehaviour
         Instance = this;
     }
 
-    [Header("Enemy Mat")]
-    public Material blueEnemyMat;
-    public Material greenEnemyMat;
-    public Material redEnemyMat;
-
-    [Header("Player Mat")]
-    public Material bluePlayerMat;
-    public Material greenPlayerMat;
-    public Material redPlayerMat;
-
     [Header("XP")]
     public GameObject xpPrefab;
-
-    [Header("Laser Mat")]
-    public Material blueLaser;
-    public Material greenLaser;
-    public Material redLaser;
-
-    [Header("ForceField Mat")]
-    public Material blueField;
-    public Material greenField;
-    public Material redField;
 
     [Header("Damage UI Prefabs")]
     public Transform pfDamagePopup;

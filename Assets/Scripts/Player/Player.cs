@@ -52,7 +52,8 @@ public class Player : MonoBehaviour
 
     private void SwapRenderMat()
     {
-        visual.GetComponent<Renderer>().material = Stance.GetPlayerMaterial(actualColor);
+        visual.GetComponent<EntityVisual>().ChangeColor(actualColor);
+        //visual.GetComponent<Renderer>().material = Stance.GetPlayerMaterial(actualColor);
         OnSwapVisualUpdate?.Invoke(this, new VisualUpdateArgs { newStance = actualColor });
     }
 

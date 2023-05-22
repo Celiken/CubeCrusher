@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ForceFieldGreen
+  m_Name: ForceField
   m_Shader: {fileID: -6465566751694194690, guid: 34de53217ba1b6c4c80c3b07a8aee4e7,
     type: 3}
   m_ValidKeywords: []
@@ -59,6 +59,6 @@ Material:
     - _QueueOffset: 0
     - _Speed: 0.05
     m_Colors:
-    - _Emission: {r: 0, g: 4, b: 0, a: 0}
+    - _Emission: {r: 0, g: 0, b: 4, a: 0}
     - _Speed: {r: 0, g: 0.25, b: 0, a: 0}
   m_BuildTextureStacks: []

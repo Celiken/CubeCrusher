@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Android;
 
 public class ForceFieldBehaviour : MeleeWeaponBehaviour
 {
@@ -31,25 +32,7 @@ public class ForceFieldBehaviour : MeleeWeaponBehaviour
 
         transform.localScale = new Vector3(controller.range, 5f, controller.range);
 
-        Material mat = GetColorMat(color);
-        if (mat == null)
-            Debug.LogError($"Did not found a material for color {color}");
-        else
-            mainProj.GetComponent<Renderer>().material = mat;
-    }
-
-    private Material GetColorMat(Stance.Type color)
-    {
-        switch (color)
-        {
-            case Stance.Type.Blue:
-                return GameAssets.Instance.blueField;
-            case Stance.Type.Red:
-                return GameAssets.Instance.redField;
-            case Stance.Type.Green:
-                return GameAssets.Instance.greenField;
-        }
-        return null;
+        mainProj.GetComponent<Renderer>().material.SetColor("_Emission", Stance.GetColor(color) * 2f);
     }
 
     private void OnTriggerEnter(Collider other)

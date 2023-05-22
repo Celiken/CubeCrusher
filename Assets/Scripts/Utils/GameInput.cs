@@ -30,8 +30,8 @@ public class GameInput : MonoBehaviour
         inputActions = new InputActions();
         inputActions.Player.Enable();
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
 
         inputActions.Player.SwapNext.performed += SwapNext_performed;
         inputActions.Player.SwapPrev.performed += SwapPrev_performed;
@@ -57,16 +57,16 @@ public class GameInput : MonoBehaviour
     {
         isGamepad = pi.currentControlScheme.Equals("Gamepad") ? true : false;
         OnDeviceChanged?.Invoke(this, EventArgs.Empty);
-        if (isGamepad)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Confined;
-            Cursor.visible = true;
-        }
+        //if (isGamepad)
+        //{
+        //    Cursor.lockState = CursorLockMode.Locked;
+        //    Cursor.visible = false;
+        //}
+        //else
+        //{
+        //    Cursor.lockState = CursorLockMode.Confined;
+        //    Cursor.visible = true;
+        //}
     }
 
     public bool IsGamepad()

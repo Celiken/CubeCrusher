@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour
 
     private void ChangeRender()
     {
-        visual.GetComponent<Renderer>().material = Stance.GetEnemyMaterial(color);
+        visual.GetComponent<EntityVisual>().ChangeColor(color);
     }
 
     public Stance.Type GetActualColor()

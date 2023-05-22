@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.011303438, g: 0.020770222, b: 0.07275247, a: 1}
+  m_IndirectSpecularColor: {r: 0.10896074, g: 0.1564475, b: 0.3013565, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2520,20 +2520,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 748cffb4683319a4ab67b95d51620ac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blueEnemyMat: {fileID: 2100000, guid: 4ef63614faa9f1348a36451694952155, type: 2}
-  greenEnemyMat: {fileID: 2100000, guid: b8e1fd557f268f64ea817a7b768b5ffe, type: 2}
-  redEnemyMat: {fileID: 2100000, guid: 0f40952d781f8f547bc52b0d47c1b55d, type: 2}
-  bluePlayerMat: {fileID: 2100000, guid: b8673b67a2d81fc4b8c1b8160b3a2c63, type: 2}
-  greenPlayerMat: {fileID: 2100000, guid: 5aa7ffbe090f8214d9e8cc8a5f51cc40, type: 2}
-  redPlayerMat: {fileID: 2100000, guid: 2b086e83d20e02a4683802e7006bbf00, type: 2}
   xpPrefab: {fileID: 6287052257623493014, guid: acb1493f934982644833538f328c017e,
     type: 3}
-  blueLaser: {fileID: 2100000, guid: 0bda3caf93f9a8b449d6a0160f3e14c0, type: 2}
-  greenLaser: {fileID: 2100000, guid: 289cfb0789bd76644b20af4deab940e7, type: 2}
-  redLaser: {fileID: 2100000, guid: defb43501e4fc1c4fb16c8d7ab009c9f, type: 2}
-  blueField: {fileID: 2100000, guid: dcdbfca34ee180b4eb0df98e7f1581ab, type: 2}
-  greenField: {fileID: 2100000, guid: 240bf435c76bbfa4588371f8e4df093f, type: 2}
-  redField: {fileID: 2100000, guid: b6089cfd99422d645b15451978f95834, type: 2}
   pfDamagePopup: {fileID: 6128175659886721500, guid: a71a1e0da11f32a4ca529baab729baca,
     type: 3}
   damageFont: {fileID: 2100000, guid: 2dcd0696d59e76043ae86c50af5eb8cd, type: 2}

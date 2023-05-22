@@ -27,31 +27,17 @@ public static class Stance
         return (Type)newColorVal;
     }
 
-    public static Material GetEnemyMaterial(Type color)
+    public static Color GetColor(Type color)
     {
         switch (color)
         {
             default:
             case Type.Blue:
-                return GameAssets.Instance.blueEnemyMat;
+                return Color.blue;
             case Type.Red:
-                return GameAssets.Instance.redEnemyMat;
+                return Color.red;
             case Type.Green:
-                return GameAssets.Instance.greenEnemyMat;
-        }
-    }
-
-    public static Material GetPlayerMaterial(Type color)
-    {
-        switch (color)
-        {
-            default:
-            case Type.Blue:
-                return GameAssets.Instance.bluePlayerMat;
-            case Type.Red:
-                return GameAssets.Instance.redPlayerMat;
-            case Type.Green:
-                return GameAssets.Instance.greenPlayerMat;
+                return Color.green;
         }
     }
 

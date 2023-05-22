@@ -26,6 +26,12 @@ public class EntityVisual : MonoBehaviour
         transform.Rotate(rotationAxisSpeed * Time.deltaTime);
     }
 
+    public void ChangeColor(Stance.Type stance)
+    {
+        GetComponent<Renderer>().material.SetColor("_BaseColor", Stance.GetColor(stance));
+        GetComponent<Renderer>().material.SetColor("_EmissionColor", Stance.GetColor(stance) * 2f);
+    }
+
     public void GetHit()
     {
         visualDamage.GetComponent<Renderer>().material.color = baseColorDamage;
