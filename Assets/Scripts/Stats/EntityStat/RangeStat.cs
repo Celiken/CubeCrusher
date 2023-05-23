@@ -1,17 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ArmorStat : BaseStat
+public class RangeStat : BaseStat
 {
-    [SerializeField] protected float mArmor;
+    [SerializeField] protected float mRange;
 
     public override bool DoUpgrade(StatUpgradeSO.StatIncrease statUpgrade)
     {
         base.DoUpgrade(statUpgrade);
-        if (baseValue >= mArmor)
+        if (baseValue >= mRange)
         {
-            baseValue = mArmor;
+            baseValue = mRange;
             return true;
         }
         return false;

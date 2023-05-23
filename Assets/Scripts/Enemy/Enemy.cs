@@ -55,10 +55,8 @@ public class Enemy : MonoBehaviour
         if (targetDir.magnitude <= attackRange && timerAttack <= 0f)
         {
             timerAttack = attackCooldown;
-            bool isCrit = statManager.GetStatComponent<CritRateStat>(Stats.EntityStat.CritRate).IsCrit();
             float baseDmg = statManager.GetStatComponent<BaseDamageStat>(Stats.EntityStat.BaseDamage).GetBaseValue();
-            float critDmg = statManager.GetStatComponent<CritDamageStat>(Stats.EntityStat.CritDamage).GetBaseValue();
-            playerTarget.TakeDamage(isCrit ? baseDmg * critDmg : baseDmg);
+            playerTarget.TakeDamage(baseDmg);
         }
     }
 
@@ -81,10 +79,10 @@ public class Enemy : MonoBehaviour
         return color;
     }
 
-    public void Hit(float damage, bool isCrit)
+    public void Hit(float damage)
     {
         int finalDmg = Mathf.RoundToInt(damage - statManager.GetStatComponent<ArmorStat>(Stats.EntityStat.Armor).GetBaseValue());
-        DamagePopupUI.Create(damagePosition.position, finalDmg, color, isCrit);
+        DamagePopupUI.Create(damagePosition.position, finalDmg, color);
         visual.GetComponent<EntityVisual>().GetHit();
         if (statManager.GetStatComponent<LifeStat>(Stats.EntityStat.Life).TakeDamage(finalDmg) <= 0)
             DestroySelf();

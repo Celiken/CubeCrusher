@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Build;
 using UnityEngine;
 
 public static class Stance
@@ -41,22 +42,9 @@ public static class Stance
         }
     }
 
-    public static Material GetDamageFont(bool isCrit)
+    public static VertexGradient GetColorGradientForTextUI(Type stance)
     {
-        return isCrit ? GameAssets.Instance.critDamageFont : GameAssets.Instance.damageFont;
-    }
-
-    public static VertexGradient GetColorGradientForTextUI(Type color, bool isCrit)
-    {
-        switch (color)
-        {
-            default:
-            case Type.Blue:
-                return isCrit ? GameAssets.Instance.blueCritGradient : GameAssets.Instance.blueGradient;
-            case Type.Red:
-                return isCrit ? GameAssets.Instance.redCritGradient : GameAssets.Instance.redGradient;
-            case Type.Green:
-                return isCrit ? GameAssets.Instance.greenCritGradient : GameAssets.Instance.greenGradient;
-        }
+        Color color = GetColor(stance);
+        return new VertexGradient(Color.white, Color.white, color, color);
     }
 }

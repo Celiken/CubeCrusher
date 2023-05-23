@@ -7,11 +7,11 @@ using UnityEngine;
 
 public class DamagePopupUI : MonoBehaviour
 {
-    public static DamagePopupUI Create(Vector3 position, int damageAmount, Stance.Type color, bool isCrit)
+    public static DamagePopupUI Create(Vector3 position, int damageAmount, Stance.Type color)
     {
         Transform damagePopupTransform = Instantiate(GameAssets.Instance.pfDamagePopup, position, Quaternion.identity);
         DamagePopupUI damagePopup = damagePopupTransform.GetComponent<DamagePopupUI>();
-        damagePopup.Setup(damageAmount, position, color, isCrit);
+        damagePopup.Setup(damageAmount, position, color);
         return damagePopup;
     }
 
@@ -23,12 +23,11 @@ public class DamagePopupUI : MonoBehaviour
         textMesh = GetComponent<TextMeshPro>();
     }
 
-    public void Setup(int damage, Vector3 position, Stance.Type color, bool isCrit)
+    public void Setup(int damage, Vector3 position, Stance.Type color)
     {
         textMesh.text = damage.ToString();
-        textMesh.fontMaterial = Stance.GetDamageFont(isCrit);
-        textMesh.colorGradient = Stance.GetColorGradientForTextUI(color, isCrit);
-        textMesh.fontSize = isCrit ? textMesh.fontSize * 2 : textMesh.fontSize;
+        textMesh.colorGradient = Stance.GetColorGradientForTextUI(color);
+        textMesh.fontSize = textMesh.fontSize;
         float moveXOffset = Random.Range(-1f, 1f);
         float moveYOffset = Random.Range(0, 1f);
         float moveZOffset = Random.Range(-1f, 1f);

@@ -45,20 +45,27 @@ public class UpgradeUI : MonoBehaviour
         ClearUpgradeList();
         upgradePanel.SetActive(false);
         Time.timeScale = 1f;
+        WeaponsManager.Instance.UpdateWeaponsStats();
     }
 
-    public void PopulateUpgradeList(List<WeaponUpgradeSO> upgradeList)
+    public void PopulateUpgradeList(List<UpgradeSO> upgradeList)
     {
         foreach (var upgrade in upgradeList)
         {
             GameObject row = Instantiate(prefab, parent);
-            row.GetComponent<RowUpgradeUI>().Init(upgrade);
+            if (upgrade.type == UpgradeSO.Type.Stat)
+                row.GetComponent<RowUpgradeUI>().Init(upgrade as StatUpgradeSO);
+            else if (upgrade.type == UpgradeSO.Type.Weapon)
+                row.GetComponent<RowUpgradeUI>().Init(upgrade as WeaponUpgradeSO);
         }
     }
 
     public void SelectItemInList()
     {
-        parent.GetChild(1).GetComponent<Button>().Select();
+        if (parent.childCount == 0)
+            EndUpgradeProcess();
+        else
+            parent.GetChild(0).GetComponent<Button>().Select();
     }
 
     public void ClearUpgradeList()

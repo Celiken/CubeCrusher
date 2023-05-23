@@ -10,13 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65eae6b5e3039354785eada22c63129c, type: 3}
-  m_Name: Laser - Damage
+  m_Name: Laser
   m_EditorClassIdentifier: 
-  upgradeType: 1
   weaponType: 0
   upgradeIcon: {fileID: 21300000, guid: c5be86d518c39e649a101ada9e1f0b8a, type: 3}
-  upgradeName: Laser - Damage
-  description: Increase the damage dealt by the laser
-  upgradeToApply:
-    stat: 1
-    value: 1.1
+  upgradeName: Laser
+  description: Shoot a laser towards the nearest enemy

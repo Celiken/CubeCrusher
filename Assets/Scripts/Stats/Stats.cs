@@ -8,20 +8,13 @@ public class Stats
     {
         Life,
         LifeRegen,
-        MoveSpeed,
         Armor,
+        MoveSpeed,
         BaseDamage,
-        CritRate,
-        CritDamage,
-    }
-
-    public enum WeaponStat
-    {
-        Unlock,
-        Damage,
-        Range,
+        DamageMult,
         Cooldown,
+        Range,
         TickRate,
-        Pierce,
+        Piercing,
     }
 }

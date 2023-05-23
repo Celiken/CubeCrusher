@@ -11,23 +11,25 @@ public class WeaponController : MonoBehaviour
     [SerializeField] protected Player player;
 
     [Header("Weapon Stats")]
+    [SerializeField] private int levelWeapon = 0;
     [Header("Cooldown")]
+    [SerializeField] protected float baseCooldown;
     [SerializeField] protected float minCooldown;
-    [SerializeField] public float cooldown;
+    public float Cooldown;
     [Header("Range")]
+    [SerializeField] protected float baseRange;
     [SerializeField] protected float maxRange;
-    [SerializeField] public float range;
+    public float Range;
     [Header("Damage")]
-    [SerializeField] public float baseDamage;
-    private int levelDamage = 1;
-    private float damage;
+    [SerializeField] protected float baseDamage;
+    [SerializeField] private float damageFactor;
+    public float Damage;
 
     private float timeBeforeNextAttack;
 
     private void Awake()
     {
         gameObject.SetActive(unlock);
-        damage = baseDamage;
     }
 
     protected virtual void Start()
@@ -54,42 +56,32 @@ public class WeaponController : MonoBehaviour
 
     protected virtual void Attack()
     {
-        timeBeforeNextAttack = cooldown;
+        timeBeforeNextAttack = Cooldown;
     }
 
-    public virtual bool DoUpgrade(WeaponUpgradeSO.WeaponIncrease upgrade)
+    public bool DoUpgrade()
     {
-        switch (upgrade.stat)
-        {
-            case Stats.WeaponStat.Unlock:
-                Unlock();
-                break;
-            case Stats.WeaponStat.Damage:
-                levelDamage++;
-                damage = baseDamage * Mathf.Pow(levelDamage, upgrade.value);
-                break;
-            case Stats.WeaponStat.Range:
-                range += upgrade.value;
-                if (range >= maxRange)
-                {
-                    range = maxRange;
-                    return true;
-                }
-                break;
-            case Stats.WeaponStat.Cooldown:
-                cooldown -= upgrade.value;
-                if (cooldown <= minCooldown)
-                {
-                    cooldown = minCooldown;
-                    return true;
-                }
-                break;
-        }
-        return false;
+        if (!unlock)
+            Unlock();
+        else
+            levelWeapon++;
+        return levelWeapon == 10;
     }
 
     public float GetDamage()
     {
-        return damage;
+        return Damage;
+    }
+
+    public virtual void ComputeValues()
+    {
+        Cooldown = baseCooldown * (1f - player.GetStats().GetStatComponent<CooldownStat>(Stats.EntityStat.Cooldown).GetBaseValue());
+        Range = baseRange * player.GetStats().GetStatComponent<RangeStat>(Stats.EntityStat.Range).GetBaseValue();
+        Damage = (baseDamage * Mathf.Pow(damageFactor, levelWeapon)) * player.GetStats().GetStatComponent<DamageMultStat>(Stats.EntityStat.DamageMult).GetBaseValue();
+    }
+
+    public int GetWeaponLevel()
+    {
+        return levelWeapon;
     }
 }

@@ -12,7 +12,7 @@ public class LaserBehaviour : ProjectileWeaponBehaviour
 
     void Update()
     {
-        transform.position += controller.speed * Time.deltaTime * direction;
+        transform.position += controller.Speed * Time.deltaTime * direction;
     }
 
     private void OnDestroy()
@@ -39,10 +39,9 @@ public class LaserBehaviour : ProjectileWeaponBehaviour
         {
             if (color == enemy.GetActualColor())
             {
-                bool isCrit = Player.Instance.GetStats().GetStatComponent<CritRateStat>(Stats.EntityStat.CritRate).IsCrit();
-                enemy.Hit(isCrit ? (controller.GetDamage() * Player.Instance.GetStats().GetStatComponent<CritDamageStat>(Stats.EntityStat.CritDamage).GetBaseValue()) : controller.GetDamage(), isCrit);
+                enemy.Hit(controller.GetDamage());
                 targetPierced++;
-                if (targetPierced >= controller.pierce)
+                if (targetPierced >= controller.Pierce)
                     Destroy(this);
             }
         }

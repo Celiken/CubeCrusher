@@ -1577,15 +1577,13 @@ MonoBehaviour:
   - {fileID: 1419316255}
   - {fileID: 1962056850}
   upgradesList:
-  - {fileID: 11400000, guid: bc07b9568a64f554e81eb39914625455, type: 2}
-  - {fileID: 11400000, guid: c670b6b481079114b9311a473fe3a2c2, type: 2}
-  - {fileID: 11400000, guid: cb9f0f44a288efb4dbf3148cd887c60e, type: 2}
-  - {fileID: 11400000, guid: 9cafbd87c56b3dd468ff189233d96019, type: 2}
+  - {fileID: 11400000, guid: ead29a7170c68b54a9723e6402ef270f, type: 2}
   - {fileID: 11400000, guid: 0dfdc2bb50860cf48a3dbd7e6ee64f0d, type: 2}
-  - {fileID: 11400000, guid: 66041b2cb12e9e742bb97c24353b86af, type: 2}
-  - {fileID: 11400000, guid: 295c144e228cf464f988007b9b6396f2, type: 2}
-  - {fileID: 11400000, guid: d5b0ce1b0a180dd42906a8334f05d492, type: 2}
-  - {fileID: 11400000, guid: acf1f5998af54084cad927aea09ae268, type: 2}
+  - {fileID: 11400000, guid: a72f3e764ea084c4bb565ae52138c658, type: 2}
+  - {fileID: 11400000, guid: 5890b43e1e73d124692ed019f3e42ccd, type: 2}
+  - {fileID: 11400000, guid: 07871edca7de2c54290f5d27b4cc7292, type: 2}
+  - {fileID: 11400000, guid: 449ed1f505232f844909b3e0bb4a185c, type: 2}
+  - {fileID: 11400000, guid: 529dfb47af9cfb245864c869ae2dff42, type: 2}
 --- !u!850595691 &651980960
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -2209,9 +2207,12 @@ GameObject:
   - component: {fileID: 1022841459}
   - component: {fileID: 1022841458}
   - component: {fileID: 1022841463}
-  - component: {fileID: 1022841462}
-  - component: {fileID: 1022841461}
   - component: {fileID: 1022841460}
+  - component: {fileID: 1022841464}
+  - component: {fileID: 1022841468}
+  - component: {fileID: 1022841467}
+  - component: {fileID: 1022841466}
+  - component: {fileID: 1022841465}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -2307,9 +2308,12 @@ MonoBehaviour:
   - {fileID: 1022841459}
   - {fileID: 1022841458}
   - {fileID: 1022841463}
-  - {fileID: 1022841462}
-  - {fileID: 1022841461}
   - {fileID: 1022841460}
+  - {fileID: 1022841465}
+  - {fileID: 1022841466}
+  - {fileID: 1022841467}
+  - {fileID: 1022841468}
+  - {fileID: 1022841464}
 --- !u!114 &1022841458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2352,38 +2356,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cfe7c895be128544a1273d9595d1ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stat: 2
+  stat: 3
   baseValue: 5
-  statMultiplier: 1
---- !u!114 &1022841461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1022841451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f4ac3eb831499444a49aa9d3117bde6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stat: 5
-  baseValue: 0.1
-  statMultiplier: 1
---- !u!114 &1022841462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1022841451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5eef793a5e0d8f4593de9d77308d71d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stat: 6
-  baseValue: 2
   statMultiplier: 1
 --- !u!114 &1022841463
 MonoBehaviour:
@@ -2397,9 +2371,88 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aa711d4d28cd1841a8a85a4873e1f5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stat: 3
+  stat: 2
   baseValue: 0
   statMultiplier: 1
+  mArmor: 0.75
+--- !u!114 &1022841464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022841451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4862c579aaabe45ae7c0f3f5797154, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stat: 5
+  baseValue: 1
+  statMultiplier: 1
+--- !u!114 &1022841465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022841451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a11cb2eac0de91f47b03c73674e5bc8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stat: 6
+  baseValue: 0
+  statMultiplier: 1
+  mCooldown: 0.8
+--- !u!114 &1022841466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022841451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68c3575da48662141b6c2010a0e19b55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stat: 9
+  baseValue: 0
+  statMultiplier: 1
+--- !u!114 &1022841467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022841451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cc5d29c81c5c8e4dbddd4ce264f5e60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stat: 7
+  baseValue: 1
+  statMultiplier: 1
+  mRange: 3
+--- !u!114 &1022841468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022841451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f11b70d283bbf4f4594fbbf554fdd1db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stat: 8
+  baseValue: 0
+  statMultiplier: 1
+  mTickRate: 0.5
 --- !u!1 &1026700399
 GameObject:
   m_ObjectHideFlags: 0
@@ -3321,13 +3374,19 @@ MonoBehaviour:
   prefab: {fileID: 2618518738945295128, guid: 2784b5b2cadd6cd43a8889e20fa0b26c, type: 3}
   unlock: 1
   player: {fileID: 1022841454}
+  levelWeapon: 0
+  baseCooldown: 0.5
   minCooldown: 0.1
-  cooldown: 0.5
-  maxRange: 10
-  range: 5
+  Cooldown: 0
+  baseRange: 5
+  maxRange: 15
+  Range: 0
   baseDamage: 5
-  speed: 50
-  pierce: 1
+  damageFactor: 1.8
+  Damage: 0
+  Speed: 50
+  basePierce: 1
+  Pierce: 0
 --- !u!1 &1421450443
 GameObject:
   m_ObjectHideFlags: 0
@@ -4504,13 +4563,18 @@ MonoBehaviour:
   prefab: {fileID: 356988665098254539, guid: b85d911220802024b91401482bda4fa3, type: 3}
   unlock: 0
   player: {fileID: 1022841454}
+  levelWeapon: 0
+  baseCooldown: 10
   minCooldown: 1
-  cooldown: 10
-  maxRange: 15
-  range: 5
+  Cooldown: 0
+  baseRange: 5
+  maxRange: 30
+  Range: 0
   baseDamage: 3
-  minTickRate: 0.1
-  tickRate: 1
+  damageFactor: 1.7
+  Damage: 0
+  baseTickRate: 0.2
+  TickRate: 0
 --- !u!1 &1970377973
 GameObject:
   m_ObjectHideFlags: 0
@@ -4570,7 +4634,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 46a403bcadfb9254ba9e93b4c06cb03b, type: 3}
-  m_Type: 3
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0

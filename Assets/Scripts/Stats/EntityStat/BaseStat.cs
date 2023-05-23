@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static StatUpgradeSO;
 
 public class BaseStat : MonoBehaviour
 {
@@ -9,11 +8,14 @@ public class BaseStat : MonoBehaviour
     [SerializeField] protected float baseValue;
     [SerializeField] protected float statMultiplier;
 
+    private int level = 0;
+
     protected float value;
 
-    public virtual bool DoUpgrade(StatIncrease statUpgrade)
+    public virtual bool DoUpgrade(StatUpgradeSO.StatIncrease statUpgrade)
     {
         baseValue += statUpgrade.value;
+        level++;
         return false;
     }
 
@@ -32,8 +34,23 @@ public class BaseStat : MonoBehaviour
         return baseValue;
     }
 
+    public int GetIntBaseValue()
+    {
+        return Mathf.RoundToInt(baseValue);
+    }
+
     public float GetLeveledValue()
     {
         return value;
+    }
+
+    public int GetIntLeveledValue()
+    {
+        return Mathf.RoundToInt(value);
+    }
+
+    public int GetStatLevel()
+    {
+        return level;
     }
 }

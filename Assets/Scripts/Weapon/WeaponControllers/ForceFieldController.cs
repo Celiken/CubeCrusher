@@ -3,8 +3,8 @@ using UnityEngine;
 public class ForceFieldController : WeaponController
 {
     [Header("TickRate")]
-    [SerializeField] protected float minTickRate;
-    [SerializeField] public float tickRate;
+    [SerializeField] protected float baseTickRate;
+    public float TickRate;
 
     private Stance.Type currentField;
     private GameObject forceField;
@@ -12,37 +12,25 @@ public class ForceFieldController : WeaponController
     protected override void Start()
     {
         forceField = Instantiate(prefab, transform.position, Quaternion.identity, transform);
+        ComputeValues();
         base.Start();
     }
 
     protected override void Attack()
     {
-        base.Attack();
         Stance.Type newField;
         do
         {
             newField = Stance.GetRandomColor();
         } while (newField == currentField);
         currentField = newField;
-        forceField.GetComponent<MeleeWeaponBehaviour>().Init(this, currentField, cooldown);
+        forceField.GetComponent<MeleeWeaponBehaviour>().Init(this, currentField, Cooldown);
+        base.Attack();
     }
 
-    public override bool DoUpgrade(WeaponUpgradeSO.WeaponIncrease upgrade)
+    public override void ComputeValues()
     {
-        switch (upgrade.stat)
-        {
-            case Stats.WeaponStat.TickRate:
-                tickRate -= upgrade.value;
-                if (tickRate <= minTickRate)
-                {
-                    tickRate = minTickRate;
-                    return true;
-                }
-                break;
-            default:
-                return base.DoUpgrade(upgrade);
-        }
-        return false;
+        TickRate = baseTickRate * (1f - player.GetStats().GetStatComponent<TickRateStat>(Stats.EntityStat.TickRate).GetBaseValue());
+        base.ComputeValues();
     }
-
 }

@@ -3,9 +3,16 @@ using UnityEngine;
 public class LaserController : WeaponController
 {
     [Header("Speed")]
-    [SerializeField] public float speed;
+    public float Speed;
     [Header("Pierce")]
-    [SerializeField] public int pierce;
+    [SerializeField] private int basePierce;
+    public int Pierce;
+
+    protected override void Start()
+    {
+        ComputeValues();
+        base.Start();
+    }
 
     protected override void Attack()
     {
@@ -14,26 +21,19 @@ public class LaserController : WeaponController
         if (closestEnemy != null)
         {
             float dist = (closestEnemy.transform.position - player.transform.position).magnitude;
-            if (dist <= range)
+            if (dist <= Range)
             {
-                base.Attack();
                 GameObject projectile = Instantiate(prefab);
                 projectile.transform.position = transform.position;
-                projectile.GetComponent<ProjectileWeaponBehaviour>().Init(this, (closestEnemy.transform.position - player.transform.position).normalized, range / speed, color);
+                projectile.GetComponent<ProjectileWeaponBehaviour>().Init(this, (closestEnemy.transform.position - player.transform.position).normalized, Range / Speed, color);
+                base.Attack();
             }
         }
     }
 
-    public override bool DoUpgrade(WeaponUpgradeSO.WeaponIncrease upgrade)
+    public override void ComputeValues()
     {
-        switch (upgrade.stat)
-        {
-            case Stats.WeaponStat.Pierce:
-                pierce += (int)upgrade.value;
-                break;
-            default:
-                return base.DoUpgrade(upgrade);
-        }
-        return false;
+        Pierce = basePierce + player.GetStats().GetStatComponent<PiercingStat>(Stats.EntityStat.Piercing).GetIntBaseValue();
+        base.ComputeValues();
     }
 }
