@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Net.WebSockets;
 using UnityEngine;
 
 public class LaserController : WeaponController
@@ -8,6 +10,8 @@ public class LaserController : WeaponController
     [SerializeField] private int basePierce;
     public int Pierce;
 
+    public List<Enemy> closestEnemies;
+
     protected override void Start()
     {
         ComputeValues();
@@ -17,16 +21,19 @@ public class LaserController : WeaponController
     protected override void Attack()
     {
         Stance.Type color = player.GetActualColor();
-        Enemy closestEnemy = EnemyTargeter.Instance.GetClosestEnemy(color);
-        if (closestEnemy != null)
+        closestEnemies = EnemyTargeter.Instance.GetClosestEnemies(color, player.GetStats().GetStatComponent<AmountStat>(Stats.EntityStat.Amount).GetIntBaseValue());
+        if (closestEnemies != null && closestEnemies.Count != 0)
         {
-            float dist = (closestEnemy.transform.position - player.transform.position).magnitude;
-            if (dist <= Range)
+            foreach (Enemy enemy in closestEnemies)
             {
-                GameObject projectile = Instantiate(prefab);
-                projectile.transform.position = transform.position;
-                projectile.GetComponent<ProjectileWeaponBehaviour>().Init(this, (closestEnemy.transform.position - player.transform.position).normalized, Range / Speed, color);
-                base.Attack();
+                float dist = (enemy.transform.position - player.transform.position).magnitude;
+                if (dist <= Range)
+                {
+                    GameObject projectile = Instantiate(prefab);
+                    projectile.transform.position = transform.position;
+                    projectile.GetComponent<ProjectileWeaponBehaviour>().Init(this, (enemy.transform.position - player.transform.position).normalized, Range / Speed, color);
+                    base.Attack();
+                }
             }
         }
     }

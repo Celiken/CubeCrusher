@@ -1584,6 +1584,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 07871edca7de2c54290f5d27b4cc7292, type: 2}
   - {fileID: 11400000, guid: 449ed1f505232f844909b3e0bb4a185c, type: 2}
   - {fileID: 11400000, guid: 529dfb47af9cfb245864c869ae2dff42, type: 2}
+  - {fileID: 11400000, guid: e7b9e4aa33360c145bc8e273bef76c3e, type: 2}
 --- !u!850595691 &651980960
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -2213,6 +2214,7 @@ GameObject:
   - component: {fileID: 1022841467}
   - component: {fileID: 1022841466}
   - component: {fileID: 1022841465}
+  - component: {fileID: 1022841469}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -2314,6 +2316,7 @@ MonoBehaviour:
   - {fileID: 1022841467}
   - {fileID: 1022841468}
   - {fileID: 1022841464}
+  - {fileID: 1022841469}
 --- !u!114 &1022841458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2405,7 +2408,7 @@ MonoBehaviour:
   stat: 6
   baseValue: 0
   statMultiplier: 1
-  mCooldown: 0.8
+  mCooldown: 0.6
 --- !u!114 &1022841466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2452,7 +2455,23 @@ MonoBehaviour:
   stat: 8
   baseValue: 0
   statMultiplier: 1
-  mTickRate: 0.5
+  mTickRate: 0.3
+--- !u!114 &1022841469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022841451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f838eebdd89ca68489a79eed369359ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stat: 10
+  baseValue: 1
+  statMultiplier: 0
+  mAmount: 5
 --- !u!1 &1026700399
 GameObject:
   m_ObjectHideFlags: 0
@@ -3387,6 +3406,7 @@ MonoBehaviour:
   Speed: 50
   basePierce: 1
   Pierce: 0
+  closestEnemies: []
 --- !u!1 &1421450443
 GameObject:
   m_ObjectHideFlags: 0
@@ -5182,6 +5202,8 @@ MonoBehaviour:
   absoluteSpawnAngle: 15
   spawnPositionSwapRate: 3
   spawnDistance: 15
+  spawnRateFactor: 1.04
+  maxEnemyAmount: 100
   spawnLayerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -5197,3 +5219,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a764a546b89376247a4745ba3c49bf6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  redEnemyList: []
+  blueEnemyList: []
+  greenEnemyList: []

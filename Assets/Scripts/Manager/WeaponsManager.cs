@@ -70,6 +70,22 @@ public class WeaponsManager : MonoBehaviour
 
     private void UpdateAvailableList()
     {
-        availableUpgrade = new List<UpgradeSO>(upgradesList);
+        availableUpgrade = new List<UpgradeSO>();
+        foreach (var upgrade in upgradesList)
+        {
+            if (upgrade.requiredWeapon.Count == 0)
+                availableUpgrade.Add(upgrade);
+            else
+            {
+                foreach (var required in upgrade.requiredWeapon)
+                {
+                    if (weaponDictionary[required].unlock)
+                    {
+                        availableUpgrade.Add(upgrade);
+                        break;
+                    }
+                }
+            }
+        }
     }
 }

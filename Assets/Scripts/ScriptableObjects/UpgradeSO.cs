@@ -11,6 +11,7 @@ public class UpgradeSO : ScriptableObject
     }
 
     public Type type;
+    public List<WeaponsManager.WeaponType> requiredWeapon;
     public Sprite upgradeIcon;
     public string upgradeName;
     public string description;

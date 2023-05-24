@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Cooling Core
   m_EditorClassIdentifier: 
   type: 1
+  requiredWeapon: 0000000001000000
   upgradeIcon: {fileID: 21300000, guid: 5d0d471e42c8a0c49a98f91ba9e21cdf, type: 3}
   upgradeName: Cooling Core
-  description: Decrease cooldown of all weapons by 15%
+  description: Decrease cooldown of all weapons
   upgradeToApply:
     stat: 6
-    value: 0.15
+    value: 0.1

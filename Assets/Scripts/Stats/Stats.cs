@@ -16,5 +16,6 @@ public class Stats
         Range,
         TickRate,
         Piercing,
+        Amount,
     }
 }

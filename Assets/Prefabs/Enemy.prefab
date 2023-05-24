@@ -187,7 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stat: 3
   baseValue: 2
-  statMultiplier: 1.25
+  statMultiplier: 1.8
 --- !u!1001 &1420201190390785221
 PrefabInstance:
   m_ObjectHideFlags: 0
