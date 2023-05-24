@@ -7,9 +7,6 @@ public class EnemyTargeter : MonoBehaviour
 {
     public static EnemyTargeter Instance;
 
-    //private KdTree<Enemy> redEnemyList = new KdTree<Enemy>();
-    //private KdTree<Enemy> blueEnemyList = new KdTree<Enemy>();
-    //private KdTree<Enemy> greenEnemyList = new KdTree<Enemy>();
     public List<Enemy> redEnemyList = new List<Enemy>();
     public List<Enemy> blueEnemyList = new List<Enemy>();
     public List<Enemy> greenEnemyList = new List<Enemy>();
@@ -20,18 +17,9 @@ public class EnemyTargeter : MonoBehaviour
         Instance = this;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         player = Player.Instance;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //redEnemyList.UpdatePositions(5);
-        //blueEnemyList.UpdatePositions(5);
-        //greenEnemyList.UpdatePositions(5);
     }
 
     public int GetEnemiesSpawnedAmount()
