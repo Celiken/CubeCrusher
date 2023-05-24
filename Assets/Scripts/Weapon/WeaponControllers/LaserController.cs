@@ -1,39 +1,46 @@
+using System.Collections.Generic;
+using System.Net.WebSockets;
 using UnityEngine;
 
 public class LaserController : WeaponController
 {
     [Header("Speed")]
-    [SerializeField] public float speed;
+    public float Speed;
     [Header("Pierce")]
-    [SerializeField] public int pierce;
+    [SerializeField] private int basePierce;
+    public int Pierce;
+
+    public List<Enemy> closestEnemies;
+
+    protected override void Start()
+    {
+        ComputeValues();
+        base.Start();
+    }
 
     protected override void Attack()
     {
         Stance.Type color = player.GetActualColor();
-        Enemy closestEnemy = EnemyTargeter.Instance.GetClosestEnemy(color);
-        if (closestEnemy != null)
+        closestEnemies = EnemyTargeter.Instance.GetClosestEnemies(color, player.GetStats().GetStatComponent<AmountStat>(Stats.EntityStat.Amount).GetIntBaseValue());
+        if (closestEnemies != null && closestEnemies.Count != 0)
         {
-            float dist = (closestEnemy.transform.position - player.transform.position).magnitude;
-            if (dist <= range)
+            foreach (Enemy enemy in closestEnemies)
             {
-                base.Attack();
-                GameObject projectile = Instantiate(prefab);
-                projectile.transform.position = transform.position;
-                projectile.GetComponent<ProjectileWeaponBehaviour>().Init(this, (closestEnemy.transform.position - player.transform.position).normalized, range / speed, color);
+                float dist = (enemy.transform.position - player.transform.position).magnitude;
+                if (dist <= Range)
+                {
+                    GameObject projectile = Instantiate(prefab);
+                    projectile.transform.position = transform.position;
+                    projectile.GetComponent<ProjectileWeaponBehaviour>().Init(this, (enemy.transform.position - player.transform.position).normalized, Range / Speed, color);
+                    base.Attack();
+                }
             }
         }
     }
 
-    public override bool DoUpgrade(WeaponUpgradeSO.WeaponIncrease upgrade)
+    public override void ComputeValues()
     {
-        switch (upgrade.stat)
-        {
-            case Stats.WeaponStat.Pierce:
-                pierce += (int)upgrade.value;
-                break;
-            default:
-                return base.DoUpgrade(upgrade);
-        }
-        return false;
+        Pierce = basePierce + player.GetStats().GetStatComponent<PiercingStat>(Stats.EntityStat.Piercing).GetIntBaseValue();
+        base.ComputeValues();
     }
 }

@@ -6,6 +6,8 @@ public class SpawnerManager : MonoBehaviour
 {
     public static SpawnerManager Instance;
 
+    private EnemyTargeter targeter;
+
     [SerializeField] private Transform centerPoint;
     [SerializeField] private GameObject enemyPrefab;
 
@@ -13,6 +15,9 @@ public class SpawnerManager : MonoBehaviour
     [SerializeField] private float absoluteSpawnAngle;
     [SerializeField] private int spawnPositionSwapRate;
     [SerializeField] private float spawnDistance = 50f;
+    [SerializeField] private float spawnRateFactor = 1.4f;
+    [SerializeField] private int maxEnemyAmount = 100;
+
 
     [SerializeField] private LayerMask spawnLayerMask;
 
@@ -34,6 +39,7 @@ public class SpawnerManager : MonoBehaviour
         nextSpawnTimer = 0;
         nextSpawnPosRandomPicking = 0;
         player = Player.Instance;
+        targeter = GetComponent<EnemyTargeter>();
         lastSpawnDirection = PickRandomDirection();
     }
 
@@ -41,7 +47,7 @@ public class SpawnerManager : MonoBehaviour
     void Update()
     {
         nextSpawnTimer -= Time.deltaTime;
-        if (nextSpawnTimer <= 0f)
+        if (nextSpawnTimer <= 0f && targeter.GetEnemiesSpawnedAmount() < maxEnemyAmount)
         {
             nextSpawnTimer = 1f / spawnRate;
             SpawnEnemy();
@@ -52,7 +58,7 @@ public class SpawnerManager : MonoBehaviour
     public void IncreaseSpawnRate()
     {
         if (spawnRate < 50f)
-            spawnRate *= 1.08f;
+            spawnRate *= spawnRateFactor;
     }
 
     public void SpawnEnemy()

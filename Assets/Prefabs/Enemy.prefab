@@ -46,8 +46,6 @@ GameObject:
   - component: {fileID: 292842060437103150}
   - component: {fileID: -1352543471587584204}
   - component: {fileID: 9125080471234035333}
-  - component: {fileID: 4260979554030148655}
-  - component: {fileID: 4684848799131555226}
   - component: {fileID: 8754158956722844692}
   m_Layer: 6
   m_Name: Enemy
@@ -128,8 +126,6 @@ MonoBehaviour:
   - {fileID: 292842060437103150}
   - {fileID: -1352543471587584204}
   - {fileID: 9125080471234035333}
-  - {fileID: 4260979554030148655}
-  - {fileID: 4684848799131555226}
   - {fileID: 8754158956722844692}
 --- !u!114 &292842060437103150
 MonoBehaviour:
@@ -145,7 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stat: 0
   baseValue: 5
-  statMultiplier: 1.1
+  statMultiplier: 1.15
 --- !u!114 &-1352543471587584204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,7 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stat: 4
   baseValue: 5
-  statMultiplier: 1.1
+  statMultiplier: 1.2
 --- !u!114 &9125080471234035333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,39 +169,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aa711d4d28cd1841a8a85a4873e1f5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stat: 3
+  stat: 2
   baseValue: 0
   statMultiplier: 0
---- !u!114 &4260979554030148655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1519477677475320315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5eef793a5e0d8f4593de9d77308d71d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stat: 6
-  baseValue: 2
-  statMultiplier: 1.1
---- !u!114 &4684848799131555226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1519477677475320315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f4ac3eb831499444a49aa9d3117bde6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stat: 5
-  baseValue: 10
-  statMultiplier: 1.1
+  mArmor: 0
 --- !u!114 &8754158956722844692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,9 +185,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cfe7c895be128544a1273d9595d1ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stat: 2
+  stat: 3
   baseValue: 2
-  statMultiplier: 1.1
+  statMultiplier: 1.8
 --- !u!1001 &1420201190390785221
 PrefabInstance:
   m_ObjectHideFlags: 0

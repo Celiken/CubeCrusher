@@ -4,12 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class StatUpgradeSO : ScriptableObject
+public class StatUpgradeSO : UpgradeSO
 {
-    public Sprite upgradeIcon;
-    public string upgradeName;
-    public string description;
-
     [Serializable]
     public struct StatIncrease
     {
@@ -19,8 +15,8 @@ public class StatUpgradeSO : ScriptableObject
 
     public StatIncrease upgradeToApply;
 
-    //public bool DoUpgrade()
-    //{
-    //    return StatsManager.Instance.statDictionary[upgradeToApply.stat].DoUpgrade(upgradeToApply);
-    //}
+    public bool DoUpgrade()
+    {
+        return Player.Instance.GetStats().statDictionary[upgradeToApply.stat].DoUpgrade(upgradeToApply);
+    }
 }

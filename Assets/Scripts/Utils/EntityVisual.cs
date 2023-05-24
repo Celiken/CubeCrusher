@@ -7,7 +7,7 @@ public class EntityVisual : MonoBehaviour
 {
     [SerializeField] private GameObject visualDamage;
 
-    private Color baseColorDamage = new Color(1f, 1f, 1f, 1f) * 1.5f;
+    private Color baseColorDamage = new Color(1f, 1f, 1f, 1f);
     private Vector3 rotationAxisSpeed;
 
     private void Awake()

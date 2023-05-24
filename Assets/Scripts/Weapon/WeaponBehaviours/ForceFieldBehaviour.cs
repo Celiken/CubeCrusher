@@ -17,10 +17,10 @@ public class ForceFieldBehaviour : MeleeWeaponBehaviour
         if (timerNextTick <= 0f)
         {
             ClearListEntity();
-            timerNextTick = controller.tickRate;
+            timerNextTick = controller.TickRate;
             Tick();
         }
-        transform.localScale = new Vector3(controller.range, 5f, controller.range);
+        transform.localScale = new Vector3(controller.Range, 5f, controller.Range);
     }
 
     public override void Init<T>(T ctrl, Stance.Type color, float lifetime)
@@ -30,7 +30,7 @@ public class ForceFieldBehaviour : MeleeWeaponBehaviour
 
         timerNextTick = 0f;
 
-        transform.localScale = new Vector3(controller.range, 5f, controller.range);
+        transform.localScale = new Vector3(controller.Range, 5f, controller.Range);
 
         mainProj.GetComponent<Renderer>().material.SetColor("_Emission", Stance.GetColor(color) * 2f);
     }
@@ -68,8 +68,7 @@ public class ForceFieldBehaviour : MeleeWeaponBehaviour
         {
             if (enemy != null && color == enemy.GetActualColor())
             {
-                bool isCrit = Player.Instance.GetStats().GetStatComponent<CritRateStat>(Stats.EntityStat.CritRate).IsCrit();
-                enemy.Hit(isCrit ? (controller.GetDamage() * Player.Instance.GetStats().GetStatComponent<CritDamageStat>(Stats.EntityStat.CritDamage).GetBaseValue()) : controller.GetDamage(), isCrit);
+                enemy.Hit(controller.GetDamage());
             }
         }
     }

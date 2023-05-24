@@ -1,4 +1,4 @@
-public class BaseDamageStat : BaseStat
+public class PiercingStat : BaseStat
 {
     public override bool DoUpgrade(StatUpgradeSO.StatIncrease statUpgrade)
     {
