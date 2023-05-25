@@ -11,7 +11,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField] protected Player player;
 
     [Header("Weapon Stats")]
-    [SerializeField] private int levelWeapon = 0;
+    [SerializeField] private int levelWeapon = 1;
     [Header("Cooldown")]
     [SerializeField] protected float baseCooldown;
     [SerializeField] protected float minCooldown;
@@ -75,9 +75,9 @@ public class WeaponController : MonoBehaviour
 
     public virtual void ComputeValues()
     {
-        Cooldown = baseCooldown * (1f - player.GetStats().GetStatComponent<CooldownStat>(Stats.EntityStat.Cooldown).GetBaseValue());
-        Range = baseRange * player.GetStats().GetStatComponent<RangeStat>(Stats.EntityStat.Range).GetBaseValue();
-        Damage = (baseDamage * Mathf.Pow(damageFactor, levelWeapon)) * player.GetStats().GetStatComponent<DamageMultStat>(Stats.EntityStat.DamageMult).GetBaseValue();
+        Cooldown = baseCooldown * (1f - player.GetStats().GetStatComponent<CooldownStat>(Stats.EntityStat.Cooldown).GetLeveledValue());
+        Range = baseRange * player.GetStats().GetStatComponent<RangeStat>(Stats.EntityStat.Range).GetLeveledValue();
+        Damage = ((baseDamage + player.GetLevel()) * Mathf.Pow(damageFactor, levelWeapon)) * player.GetStats().GetStatComponent<DamageMultStat>(Stats.EntityStat.DamageMult).GetLeveledValue();
     }
 
     public int GetWeaponLevel()

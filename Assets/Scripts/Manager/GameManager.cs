@@ -1,11 +1,11 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+
+    public event EventHandler OnGameOver;
 
     private float timer;
     private int kill;
@@ -30,6 +30,12 @@ public class GameManager : MonoBehaviour
     {
         timer = 0f;
         kill = 0;
+    }
+
+    public void EndGame()
+    {
+        Time.timeScale = 0f;
+        OnGameOver?.Invoke(this, EventArgs.Empty);
     }
 
     private void Update()

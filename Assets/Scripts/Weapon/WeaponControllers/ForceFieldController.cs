@@ -3,8 +3,7 @@ using UnityEngine;
 public class ForceFieldController : WeaponController
 {
     [Header("TickRate")]
-    [SerializeField] protected float baseTickRate;
-    public float TickRate;
+    [SerializeField] public float TickRate;
 
     private Stance.Type currentField;
     private GameObject forceField;
@@ -30,7 +29,6 @@ public class ForceFieldController : WeaponController
 
     public override void ComputeValues()
     {
-        TickRate = baseTickRate * (1f - player.GetStats().GetStatComponent<TickRateStat>(Stats.EntityStat.TickRate).GetBaseValue());
         base.ComputeValues();
     }
 }

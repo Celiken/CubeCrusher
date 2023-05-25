@@ -18,5 +18,5 @@ MonoBehaviour:
   upgradeName: Multishot Core
   description: Increase the amount of projectile fired
   upgradeToApply:
-    stat: 10
+    stat: 9
     value: 1

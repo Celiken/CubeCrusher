@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour
 {
@@ -55,7 +51,7 @@ public class Enemy : MonoBehaviour
         if (targetDir.magnitude <= attackRange && timerAttack <= 0f)
         {
             timerAttack = attackCooldown;
-            float baseDmg = statManager.GetStatComponent<BaseDamageStat>(Stats.EntityStat.BaseDamage).GetBaseValue();
+            float baseDmg = statManager.GetStatComponent<BaseDamageStat>(Stats.EntityStat.BaseDamage).GetLeveledValue();
             playerTarget.TakeDamage(baseDmg);
         }
     }
@@ -64,7 +60,7 @@ public class Enemy : MonoBehaviour
     {
         Vector3 moveDir = (playerTarget.transform.position - transform.position).normalized;
 
-        float moveDistance = statManager.GetStatComponent<MoveSpeedStat>(Stats.EntityStat.MoveSpeed).GetBaseValue() * Time.deltaTime;
+        float moveDistance = statManager.GetStatComponent<MoveSpeedStat>(Stats.EntityStat.MoveSpeed).GetLeveledValue() * Time.deltaTime;
 
         characterController.Move(moveDir * moveDistance);
     }
@@ -81,7 +77,7 @@ public class Enemy : MonoBehaviour
 
     public void Hit(float damage)
     {
-        int finalDmg = Mathf.RoundToInt(damage - statManager.GetStatComponent<ArmorStat>(Stats.EntityStat.Armor).GetBaseValue());
+        int finalDmg = Mathf.RoundToInt(damage - statManager.GetStatComponent<ArmorStat>(Stats.EntityStat.Armor).GetLeveledValue());
         DamagePopupUI.Create(damagePosition.position, finalDmg, color);
         visual.GetComponent<EntityVisual>().GetHit();
         if (statManager.GetStatComponent<LifeStat>(Stats.EntityStat.Life).TakeDamage(finalDmg) <= 0)

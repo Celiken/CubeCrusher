@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Net.WebSockets;
 using UnityEngine;
 
 public class LaserController : WeaponController
@@ -21,7 +20,7 @@ public class LaserController : WeaponController
     protected override void Attack()
     {
         Stance.Type color = player.GetActualColor();
-        closestEnemies = EnemyTargeter.Instance.GetClosestEnemies(color, player.GetStats().GetStatComponent<AmountStat>(Stats.EntityStat.Amount).GetIntBaseValue());
+        closestEnemies = EnemyTargeter.Instance.GetClosestEnemies(color, player.GetStats().GetStatComponent<AmountStat>(Stats.EntityStat.Amount).GetIntLeveledValue());
         if (closestEnemies != null && closestEnemies.Count != 0)
         {
             foreach (Enemy enemy in closestEnemies)
@@ -40,7 +39,7 @@ public class LaserController : WeaponController
 
     public override void ComputeValues()
     {
-        Pierce = basePierce + player.GetStats().GetStatComponent<PiercingStat>(Stats.EntityStat.Piercing).GetIntBaseValue();
+        Pierce = basePierce + player.GetStats().GetStatComponent<PiercingStat>(Stats.EntityStat.Piercing).GetIntLeveledValue();
         base.ComputeValues();
     }
 }

@@ -1,8 +1,5 @@
-using DG.Tweening;
 using System;
-using System.Drawing;
 using UnityEngine;
-using UnityEngine.Animations;
 
 public class Player : MonoBehaviour
 {
@@ -53,7 +50,6 @@ public class Player : MonoBehaviour
     private void SwapRenderMat()
     {
         visual.GetComponent<EntityVisual>().ChangeColor(actualColor);
-        //visual.GetComponent<Renderer>().material = Stance.GetPlayerMaterial(actualColor);
         OnSwapVisualUpdate?.Invoke(this, new VisualUpdateArgs { newStance = actualColor });
     }
 
@@ -64,15 +60,17 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        statManager.GetStatComponent<LifeStat>(Stats.EntityStat.Life).TakeDamage(Mathf.RoundToInt(damage - statManager.GetStatComponent<ArmorStat>(Stats.EntityStat.Armor).GetBaseValue()));
+        int remain = statManager.GetStatComponent<LifeStat>(Stats.EntityStat.Life).TakeDamage(Mathf.RoundToInt(damage - statManager.GetStatComponent<ArmorStat>(Stats.EntityStat.Armor).GetLeveledValue()));
         visual.GetComponent<EntityVisual>().GetHit();
+        if (remain <= 0f)
+            GameManager.Instance.EndGame();
     }
 
     private void Move()
     {
         Vector2 input = gameInput.GetMovementNormalized();
         Vector3 moveDir = new Vector3(input.x, 0f, input.y);
-        float moveDistance = statManager.GetStatComponent<MoveSpeedStat>(Stats.EntityStat.MoveSpeed).GetBaseValue() * Time.deltaTime;
+        float moveDistance = statManager.GetStatComponent<MoveSpeedStat>(Stats.EntityStat.MoveSpeed).GetLeveledValue() * Time.deltaTime;
         characterController.Move(moveDir * moveDistance);
         lastMoveDir = moveDir;
     }

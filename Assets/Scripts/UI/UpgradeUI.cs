@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,6 +36,11 @@ public class UpgradeUI : MonoBehaviour
         upgradePanel.SetActive(true);
         var list = weaponsManager.GetRandomUpgrade(3);
         PopulateUpgradeList(list);
+        if (parent.childCount == 0)
+        {
+            EndUpgradeProcess();
+            return;
+        }
         SelectItemInList();
     }
 
@@ -62,9 +66,7 @@ public class UpgradeUI : MonoBehaviour
 
     public void SelectItemInList()
     {
-        if (parent.childCount == 0)
-            EndUpgradeProcess();
-        else
+        if (GameInput.Instance.IsGamepad())
             parent.GetChild(0).GetComponent<Button>().Select();
     }
 

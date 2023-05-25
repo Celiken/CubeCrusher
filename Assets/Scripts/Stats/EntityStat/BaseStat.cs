@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseStat : MonoBehaviour
@@ -14,7 +12,7 @@ public class BaseStat : MonoBehaviour
 
     public virtual bool DoUpgrade(StatUpgradeSO.StatIncrease statUpgrade)
     {
-        baseValue += statUpgrade.value;
+        value += statUpgrade.value;
         level++;
         return false;
     }

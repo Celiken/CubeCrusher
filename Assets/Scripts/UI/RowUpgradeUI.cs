@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,7 +20,10 @@ public class RowUpgradeUI : MonoBehaviour
         weaponUpgradeRef = upgrade;
         Icon.sprite = upgrade.upgradeIcon;
         Name.text = upgrade.upgradeName;
-        Level.text = "Lv." + WeaponsManager.Instance.weaponDictionary[upgrade.weaponType].GetWeaponLevel();
+        if (WeaponsManager.Instance.weaponDictionary[upgrade.weaponType].unlock)
+            Level.text = "Lv." + WeaponsManager.Instance.weaponDictionary[upgrade.weaponType].GetWeaponLevel();
+        else
+            Level.text = "Unlock";
         Description.text = upgrade.description;
     }
 

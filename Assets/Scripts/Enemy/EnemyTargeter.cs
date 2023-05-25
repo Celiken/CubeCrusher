@@ -1,15 +1,14 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyTargeter : MonoBehaviour
 {
     public static EnemyTargeter Instance;
 
-    public List<Enemy> redEnemyList = new List<Enemy>();
-    public List<Enemy> blueEnemyList = new List<Enemy>();
-    public List<Enemy> greenEnemyList = new List<Enemy>();
+
+    private List<Enemy> redEnemyList = new List<Enemy>();
+    private List<Enemy> blueEnemyList = new List<Enemy>();
+    private List<Enemy> greenEnemyList = new List<Enemy>();
     private Player player;
 
     private void Awake()

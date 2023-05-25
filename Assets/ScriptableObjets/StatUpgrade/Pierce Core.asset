@@ -18,5 +18,5 @@ MonoBehaviour:
   upgradeName: Pierce Core
   description: Increase the number of target pierced by projectiles
   upgradeToApply:
-    stat: 9
+    stat: 8
     value: 1

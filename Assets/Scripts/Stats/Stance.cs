@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Build;
 using UnityEngine;
 
 public static class Stance
@@ -45,6 +42,6 @@ public static class Stance
     public static VertexGradient GetColorGradientForTextUI(Type stance)
     {
         Color color = GetColor(stance);
-        return new VertexGradient(Color.white, Color.white, color, color);
+        return new VertexGradient(color);
     }
 }

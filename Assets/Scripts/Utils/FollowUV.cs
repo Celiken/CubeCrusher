@@ -1,12 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FollowUV : MonoBehaviour
 {
     [SerializeField] private float OverallScale;
     [SerializeField] private Color Tint;
-    [SerializeField] private float ClipThreshold;
+    [SerializeField] private float MinClipThreshold;
+    [SerializeField] private float MaxClipThreshold;
+    [SerializeField] private float SpeedClipThreshold;
     [SerializeField] private float StarsScale;
     [SerializeField] private float Randomness;
     [SerializeField] private float BrightnessVariationScale;
@@ -25,9 +25,10 @@ public class FollowUV : MonoBehaviour
 
     void Update()
     {
+        float val = Mathf.SmoothStep(MinClipThreshold, MaxClipThreshold, Mathf.PingPong(Time.time * SpeedClipThreshold, 1));
         sr.material.SetColor("_Tint", Tint);
         sr.material.SetFloat("_OverallScale", OverallScale);
-        sr.material.SetFloat("_ClipThreshold", ClipThreshold);
+        sr.material.SetFloat("_ClipThreshold", val);
         sr.material.SetFloat("_StarsScale", StarsScale);
         sr.material.SetFloat("_Randomness", Randomness);
         sr.material.SetFloat("_BrightnessVariationScale", BrightnessVariationScale);

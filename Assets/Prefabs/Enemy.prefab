@@ -141,7 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stat: 0
   baseValue: 5
-  statMultiplier: 1.15
+  statMultiplier: 1.1
 --- !u!114 &-1352543471587584204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stat: 4
   baseValue: 5
-  statMultiplier: 1.2
+  statMultiplier: 1.1
 --- !u!114 &9125080471234035333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,7 +187,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stat: 3
   baseValue: 2
-  statMultiplier: 1.8
+  statMultiplier: 1.05
+  mSpeed: 4
 --- !u!1001 &1420201190390785221
 PrefabInstance:
   m_ObjectHideFlags: 0
