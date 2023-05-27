@@ -141,7 +141,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stat: 0
   baseValue: 5
-  statMultiplier: 1.1
+  statMultiplier: 1.3
+  level: 0
+  value: 0
 --- !u!114 &-1352543471587584204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,6 +159,8 @@ MonoBehaviour:
   stat: 4
   baseValue: 5
   statMultiplier: 1.1
+  level: 0
+  value: 0
 --- !u!114 &9125080471234035333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,6 +176,8 @@ MonoBehaviour:
   stat: 2
   baseValue: 0
   statMultiplier: 0
+  level: 0
+  value: 0
   mArmor: 0
 --- !u!114 &8754158956722844692
 MonoBehaviour:
@@ -188,6 +194,8 @@ MonoBehaviour:
   stat: 3
   baseValue: 2
   statMultiplier: 1.05
+  level: 0
+  value: 0
   mSpeed: 4
 --- !u!1001 &1420201190390785221
 PrefabInstance:

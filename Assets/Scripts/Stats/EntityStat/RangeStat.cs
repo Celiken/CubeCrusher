@@ -7,9 +7,9 @@ public class RangeStat : BaseStat
     public override bool DoUpgrade(StatUpgradeSO.StatIncrease statUpgrade)
     {
         base.DoUpgrade(statUpgrade);
-        if (baseValue >= mRange)
+        if (value >= mRange)
         {
-            baseValue = mRange;
+            value = mRange;
             return true;
         }
         return false;

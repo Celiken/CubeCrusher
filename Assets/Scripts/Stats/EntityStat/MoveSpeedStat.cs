@@ -7,9 +7,9 @@ public class MoveSpeedStat : BaseStat
     public override bool DoUpgrade(StatUpgradeSO.StatIncrease statUpgrade)
     {
         base.DoUpgrade(statUpgrade);
-        if (baseValue >= mSpeed)
+        if (value >= mSpeed)
         {
-            baseValue = mSpeed;
+            value = mSpeed;
             return true;
         }
         return false;

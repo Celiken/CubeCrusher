@@ -7,9 +7,9 @@ public class CooldownStat : BaseStat
     public override bool DoUpgrade(StatUpgradeSO.StatIncrease statUpgrade)
     {
         base.DoUpgrade(statUpgrade);
-        if (baseValue >= mCooldown)
+        if (value >= mCooldown)
         {
-            baseValue = mCooldown;
+            value = mCooldown;
             return true;
         }
         return false;

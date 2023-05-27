@@ -7,9 +7,9 @@ public class ArmorStat : BaseStat
     public override bool DoUpgrade(StatUpgradeSO.StatIncrease statUpgrade)
     {
         base.DoUpgrade(statUpgrade);
-        if (baseValue >= mArmor)
+        if (value >= mArmor)
         {
-            baseValue = mArmor;
+            value = mArmor;
             return true;
         }
         return false;

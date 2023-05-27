@@ -7,9 +7,9 @@ public class AmountStat : BaseStat
     public override bool DoUpgrade(StatUpgradeSO.StatIncrease statUpgrade)
     {
         base.DoUpgrade(statUpgrade);
-        if (baseValue >= mAmount)
+        if (value >= mAmount)
         {
-            baseValue = mAmount;
+            value = mAmount;
             return true;
         }
         return false;

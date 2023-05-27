@@ -6,9 +6,8 @@ public class BaseStat : MonoBehaviour
     [SerializeField] protected float baseValue;
     [SerializeField] protected float statMultiplier;
 
-    private int level = 0;
-
-    protected float value;
+    [SerializeField] private int level = 0;
+    [SerializeField] protected float value;
 
     public virtual bool DoUpgrade(StatUpgradeSO.StatIncrease statUpgrade)
     {
