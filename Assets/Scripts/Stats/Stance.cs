@@ -8,20 +8,20 @@ public static class Stance
         Blue,
         Red,
         Green,
-        NUMBER_OF_VALUE
+        Undefined,
     }
 
     public static Type GetRandomColor()
     {
-        int r = Random.Range(0, (int)Type.NUMBER_OF_VALUE);
+        int r = Random.Range(0, (int)Type.Undefined);
         return (Type)r;
     }
 
     public static Type GetNextColor(Type color, int dir)
     {
         int newColorVal = (int)color + dir;
-        if (newColorVal < 0) newColorVal = (int)Type.NUMBER_OF_VALUE - 1;
-        if (newColorVal >= (int)Type.NUMBER_OF_VALUE) newColorVal = 0;
+        if (newColorVal < 0) newColorVal = (int)Type.Undefined - 1;
+        if (newColorVal >= (int)Type.Undefined) newColorVal = 0;
         return (Type)newColorVal;
     }
 
@@ -36,6 +36,8 @@ public static class Stance
                 return Color.red;
             case Type.Green:
                 return Color.green;
+            case Type.Undefined:
+                return Color.white;
         }
     }
 

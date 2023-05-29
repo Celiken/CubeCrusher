@@ -19,14 +19,4 @@ public class GameAssets : MonoBehaviour
     [Header("Damage UI Fonts")]
     public Material damageFont;
     public Material critDamageFont;
-
-    [Header("Damage UI Gradient")]
-    public VertexGradient blueGradient;
-    public VertexGradient greenGradient;
-    public VertexGradient redGradient;
-
-    [Header("Crit Damage UI Gradient")]
-    public VertexGradient blueCritGradient;
-    public VertexGradient greenCritGradient;
-    public VertexGradient redCritGradient;
 }

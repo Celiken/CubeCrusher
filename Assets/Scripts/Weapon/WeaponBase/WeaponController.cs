@@ -77,7 +77,7 @@ public class WeaponController : MonoBehaviour
     {
         Cooldown = baseCooldown * (1f - player.GetStats().GetStatComponent<CooldownStat>(Stats.EntityStat.Cooldown).GetLeveledValue());
         Range = baseRange * player.GetStats().GetStatComponent<RangeStat>(Stats.EntityStat.Range).GetLeveledValue();
-        Damage = ((baseDamage + player.GetLevel()) * Mathf.Pow(damageFactor, levelWeapon)) * player.GetStats().GetStatComponent<DamageMultStat>(Stats.EntityStat.DamageMult).GetLeveledValue();
+        Damage = player.GetLevel() / 2f * baseDamage * Mathf.Pow(damageFactor, levelWeapon) * player.GetStats().GetStatComponent<DamageMultStat>(Stats.EntityStat.DamageMult).GetLeveledValue();
     }
 
     public int GetWeaponLevel()

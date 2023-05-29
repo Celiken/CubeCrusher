@@ -37,7 +37,8 @@ public class Player : MonoBehaviour
         xpManager = XPManager.Instance;
         actualColor = Stance.GetRandomColor();
         SwapRenderMat();
-        statManager.InitLevel(0);
+        statManager.InitLevel(1);
+        WeaponsManager.Instance.UpdateWeaponsStats();
         gameInput.OnSwap += GameInput_OnSwap;
     }
 

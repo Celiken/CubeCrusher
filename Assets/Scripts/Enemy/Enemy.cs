@@ -77,10 +77,9 @@ public class Enemy : MonoBehaviour
 
     public void Hit(float damage)
     {
-        int finalDmg = Mathf.RoundToInt(damage - statManager.GetStatComponent<ArmorStat>(Stats.EntityStat.Armor).GetLeveledValue());
-        DamagePopupUI.Create(damagePosition.position, finalDmg, color);
+        DamagePopupUI.Create(damagePosition.position, Mathf.RoundToInt(damage), color);
         visual.GetComponent<EntityVisual>().GetHit();
-        if (statManager.GetStatComponent<LifeStat>(Stats.EntityStat.Life).TakeDamage(finalDmg) <= 0)
+        if (statManager.GetStatComponent<LifeStat>(Stats.EntityStat.Life).TakeDamage(Mathf.RoundToInt(damage)) <= 0)
             DestroySelf();
     }
 

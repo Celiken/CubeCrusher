@@ -13,7 +13,6 @@ public class LaserController : WeaponController
 
     protected override void Start()
     {
-        ComputeValues();
         base.Start();
     }
 

@@ -8,17 +8,26 @@ public class BaseStat : MonoBehaviour
 
     [SerializeField] private int level = 0;
     [SerializeField] protected float value;
+    [SerializeField] private bool hasMaxValue;
+    [SerializeField] private float maxValue;
 
     public virtual bool DoUpgrade(StatUpgradeSO.StatIncrease statUpgrade)
     {
-        value += statUpgrade.value;
         level++;
+        value += statUpgrade.value;
+        if (hasMaxValue && value >= maxValue)
+        {
+            value = maxValue;
+            return true;
+        }
         return false;
     }
 
     public virtual void InitLevel(int level)
     {
         value = baseValue * Mathf.Pow(statMultiplier, level);
+        if (hasMaxValue && value >= maxValue)
+            value = maxValue;
     }
 
     public Stats.EntityStat GetStatType()

@@ -22,7 +22,7 @@ public class ForceFieldBehaviour : MeleeWeaponBehaviour
         transform.localScale = new Vector3(controller.Range, 5f, controller.Range);
     }
 
-    public override void Init<T>(T ctrl, Stance.Type color, float lifetime)
+    public override void Init<T>(T ctrl, Stance.Type color = Stance.Type.Undefined, float lifetime = 0f)
     {
         controller = ctrl as ForceFieldController;
         base.Init(ctrl, color, lifetime);
@@ -37,23 +37,15 @@ public class ForceFieldBehaviour : MeleeWeaponBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out Enemy enemy))
-        {
             if (!listEnemyOnField.Contains(enemy))
-            {
                 listEnemyOnField.Add(enemy);
-            }
-        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.TryGetComponent(out Enemy enemy))
-        {
             if (listEnemyOnField.Contains(enemy))
-            {
                 listEnemyOnField.Remove(enemy);
-            }
-        }
     }
 
     private void ClearListEntity()
@@ -64,11 +56,7 @@ public class ForceFieldBehaviour : MeleeWeaponBehaviour
     private void Tick()
     {
         foreach (var enemy in listEnemyOnField)
-        {
-            if (enemy != null && color == enemy.GetActualColor())
-            {
+            if (enemy != null)
                 enemy.Hit(controller.GetDamage());
-            }
-        }
     }
 }
